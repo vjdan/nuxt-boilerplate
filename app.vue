@@ -4,6 +4,7 @@
     <template v-if="isDashboard">
       <LayoutDashboardSidebar />
       <main class="dashboard-main">
+        <LayoutBreadcrumb />
         <NuxtPage />
       </main>
     </template>
@@ -76,7 +77,7 @@ const isDashboard = computed(() => {
 /* Dashboard Layout */
 .dashboard-main {
   flex: 1;
-  padding: 2rem;
+  padding: 1.5rem 2rem 2rem;
   margin-left: 0;
   min-height: 100vh;
 }

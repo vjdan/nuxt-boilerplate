@@ -2,6 +2,8 @@
 
 A modern, production-ready Nuxt 4 boilerplate with authentication, dashboard navigation, and a clean dark theme design system.
 
+> 🐳 **Docker Ready**: Full Docker support with PostgreSQL and Adminer. See [DOCKER.md](./DOCKER.md) for complete guide.
+
 ## ✨ Features
 
 ### 🎨 Modern Design System
@@ -42,11 +44,13 @@ A modern, production-ready Nuxt 4 boilerplate with authentication, dashboard nav
 
 ### Prerequisites
 
-- Node.js 18+ 
-- PostgreSQL database
-- pnpm (recommended) or npm
+- **Node.js 22+** 
+- **pnpm** (recommended) or npm
+- **Docker & Docker Compose** (for Docker setup)
 
-### Installation
+### Option 1: Local Development
+
+#### Installation
 
 1. **Clone the repository**
 ```bash
@@ -64,23 +68,87 @@ pnpm install
 cp .env.example .env
 ```
 
-Edit `.env` and add your configuration:
+Edit `.env` and configure:
 ```env
-DATABASE_URL="postgresql://user:password@localhost:5432/mydb"
+DATABASE_URL="postgresql://postgres:postgres@localhost:5433/nuxt_boilerplate"
 JWT_SECRET="your-super-secret-jwt-key-change-this"
 ```
 
-4. **Run database migrations**
+4. **Start PostgreSQL with Docker**
+```bash
+docker compose up postgres -d
+```
+
+5. **Run database migrations**
 ```bash
 pnpm db:push
 ```
 
-5. **Start development server**
+6. **Start development server**
 ```bash
 pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+### Option 2: Full Docker Setup 🐳
+
+Run the entire application stack (App + PostgreSQL + Adminer) with Docker:
+
+1. **Clone and configure**
+```bash
+git clone <your-repo-url>
+cd nuxt-boilerplate
+cp .env.example .env
+```
+
+2. **Build and start all services**
+```bash
+docker compose up --build
+```
+
+This will start:
+- **App**: http://localhost:3000
+- **Adminer** (Database UI): http://localhost:8080
+- **PostgreSQL**: localhost:5433
+
+3. **Access Adminer**
+Open http://localhost:8080 and login with:
+- **System**: PostgreSQL
+- **Server**: postgres
+- **Username**: postgres
+- **Password**: postgres
+- **Database**: nuxt_boilerplate
+
+4. **Stop services**
+```bash
+docker compose down
+```
+
+5. **Stop and remove volumes** (clears database)
+```bash
+docker compose down -v
+```
+
+### Docker Commands
+
+```bash
+# Start only database and Adminer
+docker compose up postgres adminer -d
+
+# Start only the app (requires DB running)
+docker compose up app
+
+# View logs
+docker compose logs -f app
+
+# Rebuild app after code changes
+docker compose up --build app
+
+# Execute commands in running container
+docker compose exec app pnpm db:push
+docker compose exec app sh
+```
 
 ## 📁 Project Structure
 
@@ -296,7 +364,7 @@ Both public and dashboard layouts use a professional drawer pattern on mobile:
 
 ## 🚀 Production
 
-### Build
+### Local Build
 
 ```bash
 pnpm build
@@ -306,6 +374,68 @@ pnpm build
 
 ```bash
 pnpm preview
+```
+
+### Docker Production Deployment
+
+1. **Set production environment variables**
+
+Create a `.env.production` file:
+```env
+DATABASE_URL="postgresql://postgres:secure_password@postgres:5432/nuxt_boilerplate"
+JWT_SECRET="production-secret-min-32-characters-long"
+NODE_ENV="production"
+```
+
+2. **Build and deploy with Docker**
+
+```bash
+# Build the production image
+docker compose build app
+
+# Start all services in production mode
+docker compose up -d
+
+# Check logs
+docker compose logs -f app
+```
+
+3. **Health checks**
+
+The containers include health checks for:
+- PostgreSQL: Automatic readiness checks
+- App: Waits for database to be ready before starting
+
+### Docker Architecture
+
+```
+┌─────────────────────────────────────────┐
+│                                         │
+│         Docker Compose Stack            │
+│                                         │
+│  ┌──────────────────────────────────┐  │
+│  │    Nuxt App (Port 3000)          │  │
+│  │    - Built with Node 20 Alpine    │  │
+│  │    - Production optimized         │  │
+│  └──────────────┬───────────────────┘  │
+│                 │                       │
+│                 │ connects to           │
+│                 ↓                       │
+│  ┌──────────────────────────────────┐  │
+│  │   PostgreSQL 16 (Port 5433)      │  │
+│  │   - Persistent volume             │  │
+│  │   - Health checks enabled         │  │
+│  └──────────────┬───────────────────┘  │
+│                 │                       │
+│                 │ managed by            │
+│                 ↓                       │
+│  ┌──────────────────────────────────┐  │
+│  │   Adminer (Port 8080)            │  │
+│  │   - Web-based DB admin            │  │
+│  │   - No setup required             │  │
+│  └──────────────────────────────────┘  │
+│                                         │
+└─────────────────────────────────────────┘
 ```
 
 ### Environment Variables
@@ -320,6 +450,7 @@ NODE_ENV="production"
 
 ## 📚 Documentation
 
+- **🐳 Docker Guide**: Complete Docker setup and deployment - [DOCKER.md](./DOCKER.md)
 - **Navigation System**: See `/config/NAVIGATION.md`
 - **Navigation Refactoring**: See `/NAVIGATION_REFACTOR.md`
 - **Theme Configuration**: See `/config/README.md`

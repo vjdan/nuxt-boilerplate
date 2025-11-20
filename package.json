@@ -12,7 +12,17 @@
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:push": "drizzle-kit push",
-    "db:studio": "drizzle-kit studio"
+    "db:studio": "drizzle-kit studio",
+    "docker:setup": "bash docker-setup.sh",
+    "docker:up": "docker compose up -d",
+    "docker:down": "docker compose down",
+    "docker:build": "docker compose build",
+    "docker:logs": "docker compose logs -f app",
+    "docker:restart": "docker compose restart app",
+    "docker:dev": "docker compose -f docker-compose.dev.yml up",
+    "docker:dev:build": "docker compose -f docker-compose.dev.yml up --build",
+    "docker:dev:down": "docker compose -f docker-compose.dev.yml down",
+    "docker:dev:logs": "docker compose -f docker-compose.dev.yml logs -f app"
   },
   "dependencies": {
     "@nuxt/eslint": "1.10.0",

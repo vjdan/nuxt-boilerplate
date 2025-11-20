@@ -185,7 +185,7 @@ const integrations = [
 <style scoped>
 .dashboard-shell {
   min-height: 100vh;
-  padding: clamp(2.5rem, 6vw, 5rem) 0;
+  padding: 0 0 clamp(2.5rem, 6vw, 5rem);
 }
 
 .overview {

@@ -1,7 +1,7 @@
 services:
   postgres:
     image: postgres:16-alpine
-    container_name: nuxt-boilerplate-db
+    container_name: nuxt-boilerplate-db-dev
     restart: unless-stopped
     ports:
       - "5433:5432"
@@ -10,7 +10,6 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: nuxt_boilerplate
     volumes:
-      # Use local directory for database persistence
       - ./docker/postgres-data:/var/lib/postgresql/data
     networks:
       - nuxt-network
@@ -22,7 +21,7 @@ services:
 
   adminer:
     image: adminer:latest
-    container_name: nuxt-boilerplate-adminer
+    container_name: nuxt-boilerplate-adminer-dev
     restart: unless-stopped
     ports:
       - "8080:8080"
@@ -32,30 +31,37 @@ services:
     networks:
       - nuxt-network
     depends_on:
-      postgres:
-        condition: service_healthy
+      - postgres
 
   app:
     build:
       context: .
-      dockerfile: Dockerfile
-    container_name: nuxt-boilerplate-app
+      dockerfile: Dockerfile.dev
+    container_name: nuxt-boilerplate-app-dev
     restart: unless-stopped
     ports:
       - "3000:3000"
+      - "24678:24678"  # Vite HMR port
     env_file:
       - .env
     environment:
       DATABASE_URL: postgresql://postgres:postgres@postgres:5432/nuxt_boilerplate
       JWT_SECRET: ${JWT_SECRET}
       NUXT_JWT_SECRET: ${JWT_SECRET}
-      NODE_ENV: production
+      NODE_ENV: development
+      CHOKIDAR_USEPOLLING: "true"  # Enable file watching in Docker
+      VITE_HMR_HOST: localhost  # For HMR to work
+    volumes:
+      # Mount source code for hot reload
+      - ./:/app
+      # Use named volumes for node_modules to avoid conflicts
+      - /app/node_modules
+      - /app/.nuxt
     networks:
       - nuxt-network
     depends_on:
       postgres:
         condition: service_healthy
-    command: sh -c "pnpm db:push && node .output/server/index.mjs"
 
 networks:
   nuxt-network:
