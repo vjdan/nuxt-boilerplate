@@ -22,6 +22,7 @@
 
         <!-- Auth Buttons (Desktop) -->
         <div class="app-navbar__actions">
+          <ThemeToggle />
           <template v-if="user">
             <NuxtLink to="/dashboard" class="app-navbar__btn app-navbar__btn--secondary">
               Dashboard
@@ -63,6 +64,10 @@
       </template>
 
       <nav class="app-navbar__drawer-nav">
+        <div class="app-navbar__drawer-toggle">
+          <ThemeToggle with-label />
+        </div>
+
         <NuxtLink
           v-for="link in publicNavLinks"
           :key="link.to"
@@ -147,9 +152,10 @@ watch(() => route.fullPath, () => {
   top: 0;
   z-index: 50;
   padding: 1rem 0;
-  background: rgba(10, 15, 30, 0.85);
+  background: var(--glass);
   backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--nav-shadow);
 }
 
 .app-navbar__inner {
@@ -159,7 +165,6 @@ watch(() => route.fullPath, () => {
   gap: 2rem;
 }
 
-/* Brand / Logo */
 .app-navbar__brand {
   display: flex;
   align-items: center;
@@ -169,31 +174,30 @@ watch(() => route.fullPath, () => {
 }
 
 .app-navbar__brand:hover {
-  opacity: 0.85;
+  opacity: 0.9;
 }
 
 .app-navbar__logo {
   width: 36px;
   height: 36px;
   border-radius: 10px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-strong) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.125rem;
-  color: #ffffff;
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  color: var(--accent-contrast);
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--accent) 40%, transparent);
   flex-shrink: 0;
 }
 
 .app-navbar__name {
   font-weight: 700;
   font-size: 1.125rem;
-  color: #f8fafc;
+  color: var(--text-primary);
   letter-spacing: -0.02em;
 }
 
-/* Desktop Navigation Links */
 .app-navbar__nav {
   display: none;
   align-items: center;
@@ -209,7 +213,7 @@ watch(() => route.fullPath, () => {
 .app-navbar__link {
   padding: 0.5rem 1rem;
   border-radius: 8px;
-  color: rgba(248, 250, 252, 0.7);
+  color: var(--text-secondary);
   text-decoration: none;
   font-size: 0.9375rem;
   font-weight: 500;
@@ -217,11 +221,10 @@ watch(() => route.fullPath, () => {
 }
 
 .app-navbar__link:hover {
-  color: #f8fafc;
-  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+  background: color-mix(in srgb, var(--text-primary) 8%, transparent);
 }
 
-/* Desktop Auth Buttons */
 .app-navbar__actions {
   display: none;
   align-items: center;
@@ -249,42 +252,42 @@ watch(() => route.fullPath, () => {
 
 .app-navbar__btn--ghost {
   background: transparent;
-  border-color: rgba(255, 255, 255, 0.12);
-  color: rgba(248, 250, 252, 0.7);
+  border-color: var(--border);
+  color: var(--text-secondary);
 }
 
 .app-navbar__btn--ghost:hover {
-  border-color: rgba(255, 255, 255, 0.18);
-  background: rgba(255, 255, 255, 0.05);
-  color: #f8fafc;
+  border-color: var(--border-strong);
+  background: color-mix(in srgb, var(--text-primary) 6%, transparent);
+  color: var(--text-primary);
 }
 
 .app-navbar__btn--secondary {
-  background: rgba(15, 23, 42, 0.5);
-  color: #f8fafc;
+  background: var(--surface-muted);
+  color: var(--text-primary);
+  border-color: var(--border);
 }
 
 .app-navbar__btn--secondary:hover {
-  background: rgba(15, 23, 42, 0.8);
+  background: color-mix(in srgb, var(--surface) 90%, transparent);
   transform: translateY(-1px);
 }
 
 .app-navbar__btn--primary {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: #ffffff;
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-strong) 100%);
+  color: var(--accent-contrast);
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--accent) 30%, transparent);
 }
 
 .app-navbar__btn--primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 6px 20px color-mix(in srgb, var(--accent) 40%, transparent);
 }
 
 .app-navbar__btn--primary:active {
   transform: translateY(0);
 }
 
-/* Mobile Burger Menu */
 .app-navbar__burger {
   display: flex;
   flex-direction: column;
@@ -292,26 +295,27 @@ watch(() => route.fullPath, () => {
   width: 40px;
   height: 40px;
   border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid var(--border);
+  background: var(--surface);
   align-items: center;
   justify-content: center;
   cursor: pointer;
   padding: 0;
   transition: all 0.2s ease;
+  color: var(--text-primary);
 }
 
 .app-navbar__burger span {
   width: 18px;
   height: 2px;
-  background: #f8fafc;
+  background: currentColor;
   border-radius: 2px;
   transition: all 0.3s ease;
 }
 
 .app-navbar__burger:hover {
-  background: rgba(15, 23, 42, 0.8);
-  border-color: rgba(255, 255, 255, 0.18);
+  background: color-mix(in srgb, var(--surface) 90%, transparent);
+  border-color: var(--border-strong);
 }
 
 .app-navbar__burger:active {
@@ -324,7 +328,6 @@ watch(() => route.fullPath, () => {
   }
 }
 
-/* Mobile Drawer Content */
 .app-navbar__drawer-brand {
   display: flex;
   align-items: center;
@@ -337,10 +340,14 @@ watch(() => route.fullPath, () => {
   gap: 0.5rem;
 }
 
+.app-navbar__drawer-toggle {
+  margin: 0.25rem 0 0.75rem;
+}
+
 .app-navbar__drawer-link {
   padding: 0.875rem 1rem;
   border-radius: 10px;
-  color: rgba(248, 250, 252, 0.85);
+  color: var(--text-secondary);
   text-decoration: none;
   font-size: 1rem;
   font-weight: 500;
@@ -353,26 +360,26 @@ watch(() => route.fullPath, () => {
 }
 
 .app-navbar__drawer-link:hover {
-  background: rgba(255, 255, 255, 0.06);
-  color: #f8fafc;
+  background: color-mix(in srgb, var(--text-primary) 8%, transparent);
+  color: var(--text-primary);
 }
 
 .app-navbar__drawer-link--primary {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: #ffffff;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-strong) 100%);
+  color: var(--accent-contrast);
   font-weight: 600;
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--accent) 30%, transparent);
   text-align: center;
 }
 
 .app-navbar__drawer-link--primary:hover {
   transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 6px 20px color-mix(in srgb, var(--accent) 35%, transparent);
 }
 
 .app-navbar__drawer-divider {
   height: 1px;
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--border);
   margin: 0.75rem 0;
 }
 </style>

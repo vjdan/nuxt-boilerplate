@@ -23,20 +23,20 @@ defineProps({
 
 .auth-form-title {
   font-size: 1.875rem;
-  color: #f8fafc;
+  color: var(--text-primary);
   margin: 0 0 0.5rem;
   font-weight: 700;
   letter-spacing: -0.02em;
 }
 
 .auth-form-subtitle {
-  color: rgba(248, 250, 252, 0.6);
+  color: var(--text-secondary);
   margin: 0;
   font-size: 0.9375rem;
 }
 
 .auth-form-subtitle :deep(a) {
-  color: #22d3ee;
+  color: var(--accent-strong);
   text-decoration: none;
   font-weight: 600;
   transition: all 0.2s ease;
@@ -44,7 +44,7 @@ defineProps({
 }
 
 .auth-form-subtitle :deep(a:hover) {
-  color: #22c55e;
-  border-bottom-color: #22c55e;
+  color: var(--accent);
+  border-bottom-color: var(--accent);
 }
 </style>

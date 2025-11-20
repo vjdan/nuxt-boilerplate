@@ -189,24 +189,25 @@ const integrations = [
 }
 
 .overview {
-  background: rgba(6, 12, 24, 0.75);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: 2rem;
   padding: clamp(2rem, 4vw, 3rem);
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 2rem;
   margin-bottom: 3rem;
+  box-shadow: var(--shadow-strong);
 }
 
 .overview-copy h1 {
   font-size: clamp(2rem, 3vw, 2.9rem);
-  color: #f8fafc;
+  color: var(--text-primary);
   margin: 0.5rem 0 1rem;
 }
 
 .overview-copy p {
-  color: rgba(248, 250, 252, 0.65);
+  color: var(--text-secondary);
 }
 
 .overview-copy ul {
@@ -222,6 +223,7 @@ const integrations = [
   display: flex;
   align-items: center;
   gap: 0.45rem;
+  color: var(--text-secondary);
 }
 
 .overview-copy li::before {
@@ -229,8 +231,8 @@ const integrations = [
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #22d3ee, #22c55e);
-  box-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
+  background: linear-gradient(135deg, var(--accent) 0%, var(--state-success) 100%);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--state-success) 50%, transparent);
 }
 
 .welcome-actions {
@@ -249,13 +251,20 @@ const integrations = [
 }
 
 .ghost {
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: rgba(248, 250, 252, 0.85);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  background: transparent;
+}
+
+.ghost:hover {
+  background: color-mix(in srgb, var(--text-primary) 8%, transparent);
+  color: var(--text-primary);
 }
 
 .solid {
-  background: linear-gradient(135deg, #22d3ee, #22c55e);
-  color: #03111a;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--state-success) 100%);
+  color: var(--accent-contrast);
+  box-shadow: var(--shadow-soft);
 }
 
 .chip-grid {
@@ -267,22 +276,22 @@ const integrations = [
 
 .chip {
   border-radius: 1.25rem;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid var(--border);
   padding: 1rem;
-  background: rgba(15, 23, 42, 0.5);
+  background: var(--surface-muted);
 }
 
 .chip strong {
   display: block;
   margin-top: 0.35rem;
   font-size: 1.35rem;
-  color: #f8fafc;
+  color: var(--text-primary);
 }
 
 .eyebrow {
   letter-spacing: 0.35em;
   text-transform: uppercase;
-  color: #22d3ee;
+  color: var(--accent-strong);
   font-size: 0.78rem;
 }
 
@@ -294,20 +303,22 @@ const integrations = [
 .trend-card,
 .priority-card {
   border-radius: 1.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(4, 10, 20, 0.85);
+  border: 1px solid var(--border);
+  background: var(--surface);
   padding: 1.5rem;
+  box-shadow: var(--shadow-soft);
 }
 
 .trend-card header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  color: var(--text-secondary);
 }
 
 .trend-card header strong {
   font-size: 2.1rem;
-  color: #f8fafc;
+  color: var(--text-primary);
 }
 
 .trend-graph {
@@ -320,12 +331,16 @@ const integrations = [
 .trend-graph span {
   flex: 1;
   border-radius: 999px;
-  background: linear-gradient(180deg, rgba(34, 211, 238, 0.9), rgba(34, 197, 94, 0.25));
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--accent) 70%, transparent),
+    color-mix(in srgb, var(--state-success) 40%, transparent)
+  );
 }
 
 .trend-card footer {
   font-size: 0.9rem;
-  color: rgba(248, 250, 252, 0.6);
+  color: var(--text-secondary);
 }
 
 .priority-card header {
@@ -348,15 +363,15 @@ const integrations = [
   display: flex;
   justify-content: space-between;
   gap: 1rem;
-  color: rgba(248, 250, 252, 0.75);
+  color: var(--text-secondary);
 }
 
 .priority-card small {
-  color: rgba(248, 250, 252, 0.55);
+  color: var(--text-helper);
 }
 
 .priority-card span {
-  color: #22d3ee;
+  color: var(--accent-strong);
   font-weight: 500;
 }
 
@@ -370,8 +385,9 @@ const integrations = [
 .stat-card {
   padding: 1.5rem;
   border-radius: 1.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(8, 15, 30, 0.7);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
 }
 
 .stat-card__icon {
@@ -386,16 +402,16 @@ const integrations = [
 
 .stat-value {
   font-size: 1.8rem;
-  color: #f8fafc;
+  color: var(--text-primary);
 }
 
 .stat-label,
 .stat-change {
-  color: rgba(248, 250, 252, 0.6);
+  color: var(--text-secondary);
 }
 
 .stat-change.positive {
-  color: #22c55e;
+  color: var(--state-success);
 }
 
 .insights-grid {
@@ -406,8 +422,8 @@ const integrations = [
 
 .panel {
   border-radius: 1.75rem;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(4, 10, 20, 0.8);
+  border: 1px solid var(--border);
+  background: var(--surface);
   display: flex;
   flex-direction: column;
 }
@@ -416,6 +432,7 @@ const integrations = [
   display: flex;
   align-items: center;
   justify-content: space-between;
+  color: var(--text-secondary);
 }
 
 .playbook-list article,
@@ -425,7 +442,7 @@ const integrations = [
   grid-template-columns: auto 1fr auto;
   gap: 1rem;
   padding: 1rem 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid var(--border);
 }
 
 .playbook-list article:last-child,
@@ -436,22 +453,22 @@ const integrations = [
 
 .playbook-list h4,
 .activity-list h4 {
-  color: #f8fafc;
+  color: var(--text-primary);
   margin-bottom: 0.35rem;
 }
 
 .playbook-list p,
 .activity-list p,
 .integration-grid small {
-  color: rgba(248, 250, 252, 0.6);
+  color: var(--text-secondary);
 }
 
 .playbook-list span {
-  color: rgba(248, 250, 252, 0.8);
+  color: var(--text-secondary);
 }
 
 .playbook-list span.online {
-  color: #22c55e;
+  color: var(--state-success);
 }
 
 .activity-icon {
@@ -461,19 +478,19 @@ const integrations = [
 }
 
 .activity-icon.success {
-  background: rgba(34, 197, 94, 0.2);
+  background: color-mix(in srgb, var(--state-success) 25%, transparent);
 }
 
 .activity-icon.info {
-  background: rgba(56, 189, 248, 0.2);
+  background: color-mix(in srgb, var(--state-info) 25%, transparent);
 }
 
 .activity-icon.primary {
-  background: rgba(168, 85, 247, 0.2);
+  background: color-mix(in srgb, var(--accent) 25%, transparent);
 }
 
 time {
-  color: rgba(248, 250, 252, 0.5);
+  color: var(--text-helper);
 }
 
 .integration-grid article .dot {

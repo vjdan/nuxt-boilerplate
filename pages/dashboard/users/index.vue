@@ -6,11 +6,11 @@
     <div class="demo-cards">
       <UiCard>
         <h3>Total Users</h3>
-        <p style="font-size: 2rem; font-weight: 700; color: #22d3ee; margin-top: 0.5rem;">1,234</p>
+        <p class="metric metric--accent">1,234</p>
       </UiCard>
       <UiCard>
         <h3>Active Today</h3>
-        <p style="font-size: 2rem; font-weight: 700; color: #22c55e; margin-top: 0.5rem;">567</p>
+        <p class="metric metric--success">567</p>
       </UiCard>
     </div>
   </div>
@@ -26,11 +26,11 @@ definePageMeta({
 .dashboard-page h1 {
   font-size: 2rem;
   margin-bottom: 1rem;
-  color: #f8fafc;
+  color: var(--text-primary);
 }
 
 .dashboard-page p {
-  color: rgba(248, 250, 252, 0.7);
+  color: var(--text-secondary);
   margin-bottom: 2rem;
 }
 
@@ -42,6 +42,20 @@ definePageMeta({
 
 .demo-cards h3 {
   margin: 0 0 0.5rem;
-  color: #f8fafc;
+  color: var(--text-primary);
+}
+
+.metric {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-top: 0.5rem;
+}
+
+.metric--accent {
+  color: var(--accent-strong);
+}
+
+.metric--success {
+  color: var(--state-success);
 }
 </style>

@@ -201,11 +201,11 @@ const workflow = [
   line-height: 1.05;
   letter-spacing: -0.04em;
   margin: 1rem 0;
-  color: #f8fafc;
+  color: var(--text-primary);
 }
 
 .hero-copy p {
-  color: rgba(248, 250, 252, 0.72);
+  color: var(--text-secondary);
   font-size: clamp(0.95rem, 2vw, 1.05rem);
   line-height: 1.6;
   max-width: 36rem;
@@ -217,17 +217,18 @@ const workflow = [
   gap: 0.4rem;
   padding: 0.35rem 0.9rem;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid var(--border);
+  background: var(--surface-muted);
   font-size: 0.85rem;
-  color: rgba(248, 250, 252, 0.85);
+  color: var(--text-secondary);
 }
 
 .hero-dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #22c55e;
-  box-shadow: 0 0 12px rgba(34, 197, 94, 0.8);
+  background: var(--state-success);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--state-success) 70%, transparent);
 }
 
 .hero-actions {
@@ -251,18 +252,19 @@ const workflow = [
 .stat-box {
   padding: 1.1rem;
   border-radius: 1.25rem;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(8, 15, 30, 0.55);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
 }
 
 .stat-box strong {
   display: block;
   font-size: 1.7rem;
-  color: #f8fafc;
+  color: var(--text-primary);
 }
 
 .stat-box span {
-  color: rgba(248, 250, 252, 0.6);
+  color: var(--text-secondary);
   font-size: 0.9rem;
 }
 
@@ -273,24 +275,24 @@ const workflow = [
 
 .panel-card {
   border-radius: 1.75rem;
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  background: rgba(7, 13, 26, 0.82);
+  border: 1px solid var(--border);
+  background: var(--surface);
   padding: 1.5rem;
-  box-shadow: 0 30px 60px rgba(2, 6, 23, 0.55);
+  box-shadow: var(--shadow-strong);
 }
 
 .panel-card.revenue header {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  color: rgba(248, 250, 252, 0.6);
+  color: var(--text-secondary);
   flex-wrap: wrap;
   gap: 0.5rem;
 }
 
 .panel-card.revenue header p {
   font-size: 2.2rem;
-  color: #f8fafc;
+  color: var(--text-primary);
   margin: 0;
 }
 
@@ -305,14 +307,18 @@ const workflow = [
 .sparkline span {
   flex: 1;
   border-radius: 999px;
-  background: linear-gradient(180deg, rgba(34, 211, 238, 0.9), rgba(34, 197, 94, 0.25));
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--accent) 70%, transparent),
+    color-mix(in srgb, var(--state-success) 45%, transparent)
+  );
 }
 
 .panel-card footer {
   display: flex;
   justify-content: space-between;
   font-size: 0.9rem;
-  color: rgba(248, 250, 252, 0.6);
+  color: var(--text-secondary);
   gap: 1rem;
   flex-wrap: wrap;
 }
@@ -322,13 +328,13 @@ const workflow = [
 }
 
 .positive {
-  color: #22c55e !important;
+  color: var(--state-success) !important;
   font-weight: 600;
 }
 
 .panel-card.tasks h3 {
   margin: 0 0 1rem;
-  color: #f8fafc;
+  color: var(--text-primary);
 }
 
 .panel-card.tasks ul {
@@ -344,7 +350,7 @@ const workflow = [
   display: flex;
   justify-content: space-between;
   gap: 1rem;
-  color: rgba(248, 250, 252, 0.75);
+  color: var(--text-secondary);
   font-size: 0.95rem;
 }
 
@@ -353,12 +359,12 @@ const workflow = [
 }
 
 .panel-card.tasks small {
-  color: rgba(248, 250, 252, 0.55);
+  color: var(--text-helper);
   font-size: 0.85rem;
 }
 
 .panel-card.tasks span {
-  color: #22d3ee;
+  color: var(--accent-strong);
   white-space: nowrap;
   font-size: 0.85rem;
 }
@@ -369,7 +375,7 @@ const workflow = [
   flex-wrap: wrap;
   gap: 1rem 2rem;
   justify-content: center;
-  color: rgba(248, 250, 252, 0.45);
+  color: var(--text-helper);
   font-weight: 600;
   letter-spacing: 0.08em;
   font-size: 0.95rem;
@@ -388,14 +394,14 @@ const workflow = [
 .section-heading p {
   text-transform: uppercase;
   letter-spacing: 0.35em;
-  color: #22d3ee;
+  color: var(--accent-strong);
   font-size: 0.82rem;
   margin: 0 0 1rem;
 }
 
 .section-heading h2 {
   font-size: clamp(1.7rem, 3vw, 2.8rem);
-  color: #f8fafc;
+  color: var(--text-primary);
   line-height: 1.2;
   margin: 0;
 }
@@ -409,8 +415,8 @@ const workflow = [
 .feature-card {
   padding: 1.5rem;
   border-radius: 1.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  background: rgba(5, 11, 21, 0.85);
+  border: 1px solid var(--border);
+  background: var(--surface);
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -429,13 +435,13 @@ const workflow = [
 
 .feature-card h3 {
   margin: 0;
-  color: #f8fafc;
+  color: var(--text-primary);
   font-size: 1.25rem;
 }
 
 .feature-card p {
   margin: 0;
-  color: rgba(248, 250, 252, 0.65);
+  color: var(--text-secondary);
   line-height: 1.5;
 }
 
@@ -447,10 +453,10 @@ const workflow = [
 
 .feature-meta span {
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid var(--border);
   padding: 0.25rem 0.85rem;
   font-size: 0.82rem;
-  color: rgba(248, 250, 252, 0.7);
+  color: var(--text-secondary);
 }
 
 .workflow {
@@ -466,8 +472,8 @@ const workflow = [
 .workflow-card {
   padding: 1.4rem;
   border-radius: 1.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(7, 12, 24, 0.85);
+  border: 1px solid var(--border);
+  background: var(--surface);
   display: flex;
   gap: 1rem;
 }
@@ -475,21 +481,21 @@ const workflow = [
 .workflow-card .badge {
   align-self: flex-start;
   border-radius: 0.9rem;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid var(--border-strong);
   padding: 0.25rem 0.7rem;
   font-size: 0.85rem;
-  color: rgba(248, 250, 252, 0.7);
+  color: var(--text-secondary);
   flex-shrink: 0;
 }
 
 .workflow-body h3 {
   margin: 0 0 0.5rem;
-  color: #f8fafc;
+  color: var(--text-primary);
 }
 
 .workflow-body p {
   margin: 0 0 0.75rem;
-  color: rgba(248, 250, 252, 0.65);
+  color: var(--text-secondary);
   line-height: 1.5;
 }
 
@@ -500,7 +506,7 @@ const workflow = [
   flex-direction: column;
   gap: 0.4rem;
   margin: 0;
-  color: rgba(248, 250, 252, 0.6);
+  color: var(--text-secondary);
 }
 
 @media (max-width: 768px) {

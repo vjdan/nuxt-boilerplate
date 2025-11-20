@@ -44,7 +44,7 @@ defineProps({
 }
 
 .auth-panel {
-  color: rgba(248, 250, 252, 0.75);
+  color: var(--text-secondary);
   max-width: 36rem;
 }
 

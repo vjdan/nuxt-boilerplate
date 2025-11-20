@@ -1,76 +1,79 @@
 /**
- * Theme Configuration
- * Customize your app colors here
+ * Global theme tokens used to generate CSS variables for light/dark modes.
+ * Extend the palettes here – everything else reads from these values.
  */
 
 export const themeConfig = {
-  colors: {
-    // Primary colors
-    primary: '#000000',      // Black
-    secondary: '#ffffff',    // White
-    
-    // Accent colors (customize as needed)
-    accent: '#6366f1',       // Indigo
-    accentLight: '#818cf8',  // Light Indigo
-    success: '#10b981',      // Green
-    warning: '#f59e0b',      // Amber
-    error: '#ef4444',        // Red
-    info: '#3b82f6',         // Blue
-    
-    // Background colors
-    background: {
-      primary: '#ffffff',
-      secondary: '#f8f9fa',
-      tertiary: '#f1f3f5',
-      dark: '#111827',
-      card: '#ffffff',
+  storageKey: 'app-theme',
+  cookieName: 'app-theme',
+  themes: {
+    light: {
+      colorScheme: 'light',
+      page: '#f6f8fb',
+      pageMuted: '#e8edf5',
+      surface: '#ffffff',
+      surfaceMuted: '#f8fafc',
+      glass: 'rgba(255, 255, 255, 0.9)',
+      border: '#e2e8f0',
+      borderStrong: '#cbd5e1',
+      text: '#0f172a',
+      textMuted: '#475569',
+      textHelper: '#64748b',
+      accent: '#6366f1',
+      accentStrong: '#4f46e5',
+      accentContrast: '#ffffff',
+      accentSoft: '#eef2ff',
+      accentBorder: '#c7d2fe',
+      pageGradient: 'radial-gradient(circle at 18% 20%, rgba(99, 102, 241, 0.12), transparent 32%), radial-gradient(circle at 78% 0%, rgba(56, 189, 248, 0.12), transparent 30%), linear-gradient(180deg, #f8fafc 0%, #e8edf5 100%)',
+      shadowSoft: '0 10px 30px rgba(15, 23, 42, 0.08)',
+      shadowStrong: '0 22px 60px rgba(15, 23, 42, 0.12)',
+      overlay: 'rgba(0, 0, 0, 0.35)',
+      navShadow: '0 8px 30px rgba(15, 23, 42, 0.08)',
+      ring: '0 0 0 3px rgba(79, 70, 229, 0.25)',
+      focusBorder: '#4f46e5'
     },
-    
-    // Text colors
-    text: {
-      primary: '#111827',
-      secondary: '#6b7280',
-      tertiary: '#9ca3af',
-      light: '#d1d5db',
-      inverse: '#ffffff',
-    },
-    
-    // Border colors
-    border: {
-      light: '#f3f4f6',
-      DEFAULT: '#e5e7eb',
-      dark: '#d1d5db',
+    dark: {
+      colorScheme: 'dark',
+      page: '#050a14',
+      pageMuted: '#0a0f1e',
+      surface: '#0f172a',
+      surfaceMuted: '#111827',
+      glass: 'rgba(10, 15, 30, 0.85)',
+      border: 'rgba(255, 255, 255, 0.08)',
+      borderStrong: 'rgba(255, 255, 255, 0.14)',
+      text: '#e5e7eb',
+      textMuted: '#cbd5e1',
+      textHelper: '#9ca3af',
+      accent: '#818cf8',
+      accentStrong: '#6366f1',
+      accentContrast: '#ffffff',
+      accentSoft: 'rgba(99, 102, 241, 0.14)',
+      accentBorder: 'rgba(99, 102, 241, 0.35)',
+      pageGradient: 'radial-gradient(circle at 20% 18%, rgba(99, 102, 241, 0.12), transparent 32%), radial-gradient(circle at 80% 0%, rgba(45, 212, 191, 0.09), transparent 28%), linear-gradient(180deg, #0a0f1e 0%, #050a14 100%)',
+      shadowSoft: '0 10px 30px rgba(0, 0, 0, 0.28)',
+      shadowStrong: '0 18px 50px rgba(0, 0, 0, 0.35)',
+      overlay: 'rgba(0, 0, 0, 0.6)',
+      navShadow: '0 4px 20px rgba(0, 0, 0, 0.25)',
+      ring: '0 0 0 3px rgba(99, 102, 241, 0.25)',
+      focusBorder: '#6366f1'
     }
   },
-  
-  // Gradients (optional)
-  gradients: {
-    primary: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-    accent: 'linear-gradient(135deg, #6366f1, #8b5cf6)',
-    subtle: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)',
+  state: {
+    success: '#10b981',
+    warning: '#f59e0b',
+    error: '#ef4444',
+    info: '#0ea5e9'
   },
-  
-  // Shadows
-  shadows: {
-    xs: '0 1px 2px 0 rgb(0 0 0 / 0.05)',
-    sm: '0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)',
-    DEFAULT: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
-    md: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
-    lg: '0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)',
-    xl: '0 25px 50px -12px rgb(0 0 0 / 0.25)',
-    '2xl': '0 25px 50px -12px rgb(0 0 0 / 0.25)',
-  },
-  
-  // Border radius
   radius: {
     sm: '0.375rem',
-    DEFAULT: '0.5rem',
+    DEFAULT: '0.625rem',
     md: '0.75rem',
     lg: '1rem',
     xl: '1.25rem',
     '2xl': '1.5rem',
-    full: '9999px',
+    full: '9999px'
   }
 }
 
+export type ThemeName = keyof typeof themeConfig.themes
 export type ThemeConfig = typeof themeConfig

@@ -105,27 +105,27 @@ const handleLogin = async () => {
 
 .stat-item {
   border-radius: 1.25rem;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  background: rgba(0, 0, 0, 0.02);
+  border: 1px solid var(--border);
+  background: var(--surface-muted);
   padding: 1rem;
 }
 
 .stat-item strong {
   display: block;
   font-size: 1.4rem;
-  color: #000000;
+  color: var(--text-primary);
 }
 
 .stat-item span {
-  color: rgba(0, 0, 0, 0.6);
+  color: var(--text-secondary);
 }
 
 .error-message {
   padding: 1rem;
   border-radius: 0.75rem;
-  background: rgba(239, 68, 68, 0.1);
-  border: 1px solid rgba(239, 68, 68, 0.3);
-  color: #dc2626;
+  background: color-mix(in srgb, var(--state-error) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--state-error) 35%, transparent);
+  color: var(--state-error);
   font-size: 0.9rem;
 }
 </style>

@@ -26,11 +26,11 @@ definePageMeta({
 .dashboard-page h1 {
   font-size: 2rem;
   margin-bottom: 1rem;
-  color: #f8fafc;
+  color: var(--text-primary);
 }
 
 .dashboard-page p {
-  color: rgba(248, 250, 252, 0.7);
+  color: var(--text-secondary);
   margin-bottom: 2rem;
 }
 
@@ -42,11 +42,12 @@ definePageMeta({
 
 .demo-cards h3 {
   margin: 0 0 0.5rem;
-  color: #f8fafc;
+  color: var(--text-primary);
 }
 
 .demo-cards p {
   margin: 0;
   font-size: 0.9375rem;
+  color: var(--text-secondary);
 }
 </style>

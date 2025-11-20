@@ -85,7 +85,7 @@ onMounted(() => {
 .mobile-drawer__backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: var(--overlay);
   backdrop-filter: blur(4px);
   animation: fadeIn 0.2s ease;
 }
@@ -96,10 +96,10 @@ onMounted(() => {
   right: 0;
   bottom: 0;
   width: min(320px, 85vw);
-  background: rgba(15, 23, 42, 0.98);
+  background: var(--surface);
   backdrop-filter: blur(20px);
-  border-left: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: -8px 0 32px rgba(0, 0, 0, 0.5);
+  border-left: 1px solid var(--border);
+  box-shadow: -8px 0 32px color-mix(in srgb, #000 45%, transparent);
   display: flex;
   flex-direction: column;
   animation: slideIn 0.3s ease;
@@ -110,13 +110,13 @@ onMounted(() => {
   align-items: center;
   justify-content: space-between;
   padding: 1.25rem 1.5rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid var(--border);
 }
 
 .mobile-drawer__title {
   font-size: 1.125rem;
   font-weight: 700;
-  color: #f8fafc;
+  color: var(--text-primary);
 }
 
 .mobile-drawer__close {
@@ -128,14 +128,14 @@ onMounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(248, 250, 252, 0.7);
+  color: var(--text-secondary);
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .mobile-drawer__close:hover {
-  background: rgba(255, 255, 255, 0.08);
-  color: #f8fafc;
+  background: color-mix(in srgb, var(--text-primary) 8%, transparent);
+  color: var(--text-primary);
 }
 
 .mobile-drawer__close:active {

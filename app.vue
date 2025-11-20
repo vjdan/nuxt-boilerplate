@@ -31,26 +31,15 @@ const isDashboard = computed(() => {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-
 :global(body) {
-  margin: 0;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  background-color: #0a0f1e;
-  color: #f8fafc;
-  min-height: 100vh;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-:global(*) {
-  box-sizing: border-box;
+  background: var(--page-gradient);
+  color: var(--text-primary);
 }
 
 .app-shell {
   position: relative;
   min-height: 100vh;
-  background: linear-gradient(180deg, #0a0f1e 0%, #050a14 100%);
+  background: var(--page-gradient);
   background-attachment: fixed;
 }
 

@@ -92,7 +92,7 @@ const breadcrumbs = computed<Breadcrumb[]>(() => {
   display: flex;
   align-items: center;
   gap: 0.35rem;
-  color: rgba(248, 250, 252, 0.6);
+  color: var(--text-secondary);
   text-decoration: none;
   font-size: 0.875rem;
   transition: all 0.2s ease;
@@ -101,19 +101,19 @@ const breadcrumbs = computed<Breadcrumb[]>(() => {
 }
 
 .breadcrumb-link:hover {
-  color: #22d3ee;
-  background: rgba(34, 211, 238, 0.1);
+  color: var(--accent-strong);
+  background: var(--accent-soft);
 }
 
 .breadcrumb-current {
   display: flex;
   align-items: center;
   gap: 0.35rem;
-  color: #f8fafc;
+  color: var(--text-primary);
   font-size: 0.875rem;
   font-weight: 600;
   padding: 0.4rem 0.75rem;
-  background: rgba(34, 211, 238, 0.08);
+  background: var(--surface-muted);
   border-radius: 0.5rem;
 }
 
@@ -125,7 +125,7 @@ const breadcrumbs = computed<Breadcrumb[]>(() => {
 .breadcrumb-separator {
   width: 0.875rem;
   height: 0.875rem;
-  color: rgba(248, 250, 252, 0.3);
+  color: var(--text-helper);
 }
 
 @media (max-width: 640px) {

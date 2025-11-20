@@ -107,7 +107,7 @@ const handleChildNavigate = () => {
   gap: 0.75rem;
   padding: 0.75rem 1rem;
   border-radius: 10px;
-  color: rgba(248, 250, 252, 0.7);
+  color: var(--text-secondary);
   text-decoration: none;
   font-size: 0.9375rem;
   font-weight: 500;
@@ -120,14 +120,14 @@ const handleChildNavigate = () => {
 }
 
 .dashboard-menu-item__link:hover {
-  background: rgba(255, 255, 255, 0.05);
-  color: #f8fafc;
+  background: color-mix(in srgb, var(--text-primary) 8%, transparent);
+  color: var(--text-primary);
 }
 
 .dashboard-menu-item__link--active {
-  background: rgba(102, 126, 234, 0.15);
-  color: #667eea;
-  border-color: rgba(102, 126, 234, 0.2);
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+  border-color: var(--accent-border);
 }
 
 .dashboard-menu-item__link--has-children {

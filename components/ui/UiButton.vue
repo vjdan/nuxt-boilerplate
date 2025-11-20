@@ -64,7 +64,7 @@ defineProps({
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  border-radius: 10px;
+  border-radius: var(--radius-md);
   padding: 0.75rem 1.5rem;
   font-weight: 600;
   font-size: 0.9375rem;
@@ -84,14 +84,14 @@ defineProps({
 }
 
 .ui-button--primary {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: #ffffff;
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-strong) 100%);
+  color: var(--accent-contrast);
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--accent) 30%, transparent);
 }
 
 .ui-button--primary:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 6px 20px color-mix(in srgb, var(--accent) 40%, transparent);
 }
 
 .ui-button--primary:active:not(:disabled) {
@@ -100,25 +100,26 @@ defineProps({
 
 .ui-button--ghost {
   background: transparent;
-  border-color: rgba(0, 0, 0, 0.15);
-  color: #6b7280;
+  border-color: var(--border);
+  color: var(--text-secondary);
 }
 
 .ui-button--ghost:hover:not(:disabled) {
-  border-color: rgba(0, 0, 0, 0.25);
-  background: #f8f9fa;
-  color: #111827;
+  border-color: var(--border-strong);
+  background: color-mix(in srgb, var(--text-primary) 6%, transparent);
+  color: var(--text-primary);
 }
 
 .ui-button--solid {
-  background: #111827;
-  color: #ffffff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  background: var(--text-primary);
+  color: var(--bg-page);
+  box-shadow: var(--shadow-soft);
+  border-color: var(--border);
 }
 
 .ui-button--solid:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow-strong);
 }
 
 .ui-button--solid:active:not(:disabled) {

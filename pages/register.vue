@@ -124,10 +124,10 @@ const handleRegister = async () => {
 
 .pill {
   border-radius: 999px;
-  border: 1px solid rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--border);
   padding: 0.35rem 1rem;
   font-size: 0.85rem;
-  color: rgba(0, 0, 0, 0.7);
+  color: var(--text-secondary);
 }
 
 .milestones {
@@ -138,29 +138,29 @@ const handleRegister = async () => {
 
 .milestone {
   border-radius: 1.25rem;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  background: rgba(0, 0, 0, 0.02);
+  border: 1px solid var(--border);
+  background: var(--surface-muted);
   padding: 1rem;
 }
 
 .milestone strong {
   display: block;
-  color: #000000;
+  color: var(--text-primary);
   font-size: 0.9rem;
   letter-spacing: 0.05em;
 }
 
 .milestone p {
   margin: 0.4rem 0 0;
-  color: rgba(0, 0, 0, 0.6);
+  color: var(--text-secondary);
 }
 
 .error-message {
   padding: 1rem;
   border-radius: 0.75rem;
-  background: rgba(239, 68, 68, 0.1);
-  border: 1px solid rgba(239, 68, 68, 0.3);
-  color: #dc2626;
+  background: color-mix(in srgb, var(--state-error) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--state-error) 35%, transparent);
+  color: var(--state-error);
   font-size: 0.9rem;
 }
 </style>

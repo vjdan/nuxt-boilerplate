@@ -208,21 +208,38 @@ nuxt-boilerplate/
 
 ### Theme Configuration
 
-Edit `/config/theme.ts` to customize colors, shadows, and other design tokens:
+Edit `/config/theme.ts` to customize the light/dark tokens that power the global CSS variables:
 
 ```typescript
 export const themeConfig = {
-  colors: {
-    primary: '#667eea',
-    accent: '#764ba2',
-    // ... more colors
-  },
-  gradients: {
-    primary: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-    // ... more gradients
-  },
+  storageKey: 'app-theme',
+  cookieName: 'app-theme',
+  themes: {
+    light: {
+      page: '#f6f8fb',
+      surface: '#ffffff',
+      text: '#0f172a',
+      accent: '#6366f1',
+      // ...extend tokens as needed
+    },
+    dark: {
+      page: '#050a14',
+      surface: '#0f172a',
+      text: '#e5e7eb',
+      accent: '#818cf8',
+      // ...extend tokens as needed
+    }
+  }
 }
 ```
+
+### Theme System
+
+- **Toggle**: Drop `<ThemeToggle />` anywhere (already wired into the public navbar and dashboard sidebar). Add `with-label` to show text.
+- **Composable**: `const { theme, isDark, toggleTheme, setTheme } = useTheme()` for programmatic control.
+- **Persistence & defaults**: Preference is stored in both `localStorage` and a `app-theme` cookie; first visit falls back to `prefers-color-scheme` with an inline pre-paint script to avoid flashes.
+- **Classes & variables**: The active theme class (`light`/`dark`) lives on `<html>` and drives the CSS variables like `--bg-page`, `--surface`, `--text-primary`, `--accent`, etc. Use these in component styles for theme-safe colors.
+- **Extending tokens**: Add new keys under `themeConfig.themes.light/dark` and consume them via CSS variables or by extending the variable list in `plugins/theme.ts` if you introduce new tokens.
 
 ### Navigation Menu
 

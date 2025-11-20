@@ -54,39 +54,39 @@ const inputId = computed(() => `input-${Math.random().toString(36).substring(2, 
 .ui-input__label {
   font-size: 0.875rem;
   font-weight: 600;
-  color: rgba(248, 250, 252, 0.85);
+  color: var(--text-secondary);
   letter-spacing: -0.01em;
 }
 
 .ui-input {
   width: 100%;
   padding: 0.875rem 1.125rem;
-  border-radius: 10px;
-  border: 1.5px solid rgba(255, 255, 255, 0.12);
-  background: rgba(15, 23, 42, 0.5);
-  color: #f8fafc;
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--border);
+  background: var(--surface-muted);
+  color: var(--text-primary);
   font-size: 0.9375rem;
   transition: all 0.2s ease;
   font-family: inherit;
 }
 
 .ui-input::placeholder {
-  color: rgba(248, 250, 252, 0.4);
+  color: var(--text-helper);
 }
 
 .ui-input:hover {
-  border-color: rgba(255, 255, 255, 0.18);
-  background: rgba(15, 23, 42, 0.7);
+  border-color: var(--border-strong);
+  background: color-mix(in srgb, var(--surface) 90%, transparent);
 }
 
 .ui-input:focus {
   outline: none;
-  border-color: #667eea;
-  background: rgba(15, 23, 42, 0.8);
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+  border-color: var(--focus-border);
+  background: var(--surface);
+  box-shadow: var(--ring);
 }
 
 .ui-input:focus::placeholder {
-  color: rgba(248, 250, 252, 0.3);
+  color: color-mix(in srgb, var(--text-helper) 60%, transparent);
 }
 </style>
