@@ -1,0 +1,2 @@
+# nuxt-boilerplate
+nuxt boilerplate
