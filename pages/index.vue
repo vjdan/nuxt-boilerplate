@@ -1,195 +1,270 @@
 <template>
-  <DigitalHive />
   <div class="landing-page">
+    <!-- Background Component -->
+    <LandingBackgroundsDigitalHive />
+
+    <!-- Hero Section -->
     <LandingHero
-      :eyebrow="heroEyebrow"
-      :title="heroTitle"
-      :subtitle="heroSubtitle"
+      :eyebrow="locale === 'fr' ? 'Texte hero eyebrow' : 'Hero Eyebrow Text'"
+      :title="locale === 'fr' ? 'Titre principal hero<br>Titre secondaire hero' : 'Main Hero Title<br>Secondary Hero Title'"
+      :subtitle="locale === 'fr' ? 'Sous-titre hero qui explique la proposition de valeur principale de l\'application.' : 'Hero subtitle description that explains the main value proposition of the application.'"
       :cta="primaryCta"
-      note="Sans carte bancaire • Onboarding guidé en 30 minutes"
+      :note="locale === 'fr' ? 'Texte de note hero • Information additionnelle' : 'Hero note text • Additional information'"
       :highlights="heroHighlights"
-      :stats="heroStats"
+      :stats="heroStats" 
       :streams="heroStreams"
       :spotlight="heroSpotlight"
     />
 
+    <!-- Proof Bar -->
     <LandingProofBar
+      :eyebrow="locale === 'fr' ? 'Eyebrow section preuve' : 'Proof Section Eyebrow'"
       :logos="proofLogos"
       :metrics="proofMetrics"
       :rating="proofRating"
     />
 
+    <!-- Features Section -->
     <LandingFeatures
-      eyebrow="Fonctionnalités clés"
-      title="Tout ce qu’il faut pour piloter vos relances sans friction"
-      description="Une plateforme qui orchestre les relances, alerte vos équipes et garde votre CRM parfaitement à jour."
+      :eyebrow="locale === 'fr' ? 'Eyebrow section fonctionnalités' : 'Features Section Eyebrow'"
+      :title="locale === 'fr' ? 'Titre section fonctionnalités' : 'Features Section Title'"
+      :description="locale === 'fr' ? 'Paragraphe de description de la section fonctionnalités.' : 'Features section description paragraph that explains the main features.'"
       :features="features"
     />
 
-    <LandingBenefits
-      eyebrow="Proposition de valeur"
-      title="Pourquoi choisir MyApp pour vos relances B2B ?"
-      description="Chaque bloc est pensé pour réduire la friction : tout est prêt, connecté à votre CRM et optimisé pour que vos équipes passent moins de temps à relancer et plus à signer."
-      :benefits="benefits"
-    />
-
+    <!-- How It Works Section -->
     <LandingHowItWorks
-      eyebrow="Comment ça marche"
-      title="3 étapes pour lancer vos relances sans tableur"
-      description="Pas de bricolage : on connecte vos outils, on active un playbook validé et vous suivez les résultats en direct."
+      :eyebrow="locale === 'fr' ? 'Eyebrow comment ça marche' : 'How It Works Eyebrow'"
+      :title="locale === 'fr' ? 'Titre comment ça marche' : 'How It Works Title'"
+      :description="locale === 'fr' ? 'Paragraphe de description de la section comment ça marche.' : 'How it works section description paragraph.'"
       :steps="steps"
     />
 
+    <!-- Benefits Section -->
+    <LandingBenefits
+      :eyebrow="locale === 'fr' ? 'Eyebrow section avantages' : 'Benefits Section Eyebrow'"
+      :title="locale === 'fr' ? 'Titre section avantages' : 'Benefits Section Title'"
+      :description="locale === 'fr' ? 'Paragraphe de description de la section avantages.' : 'Benefits section description paragraph that explains the main benefits.'"
+      :benefits="benefits"
+    />
+
+    <!-- Social Proof Section -->
     <LandingSocialProof
-      eyebrow="Preuve sociale"
-      title="Ils ont supprimé la friction dans leurs relances"
-      description="Des équipes sales, success et growth qui ont besoin de visibilité et d'actions guidées chaque jour."
+      :eyebrow="locale === 'fr' ? 'Eyebrow preuve sociale' : 'Social Proof Eyebrow'"
+      :title="locale === 'fr' ? 'Titre section preuve sociale' : 'Social Proof Section Title'"
+      :description="locale === 'fr' ? 'Paragraphe de description de la section preuve sociale.' : 'Social proof section description paragraph.'"
       :testimonials="testimonials"
     />
 
+    <!-- Pricing Section -->
     <LandingPricing
-      eyebrow="Offre"
-      title="Un seul objectif : lancer vos playbooks rapidement"
-      description="Choisissez le plan qui vous correspond. Même CTA partout pour garder l'objectif clair."
+      :eyebrow="locale === 'fr' ? 'Eyebrow section tarifs' : 'Pricing Section Eyebrow'"
+      :title="locale === 'fr' ? 'Titre section tarifs' : 'Pricing Section Title'"
+      :description="locale === 'fr' ? 'Paragraphe de description de la section tarifs.' : 'Pricing section description paragraph.'"
       :plans="plans"
     />
 
+    <!-- FAQ Section -->
     <LandingFAQ
-      eyebrow="Objections fréquentes"
-      title="On répond avant que vous ne posiez la question"
-      description="Tarifs, délai de mise en route, sécurité : voici les réponses rapides pour décider sereinement."
-      note="Un CSM vous accompagne sur les 30 premiers jours pour garantir un déploiement sans friction."
+      :eyebrow="locale === 'fr' ? 'Eyebrow section FAQ' : 'FAQ Section Eyebrow'"
+      :title="locale === 'fr' ? 'Titre section FAQ' : 'FAQ Section Title'"
+      :description="locale === 'fr' ? 'Paragraphe de description de la section FAQ.' : 'FAQ section description paragraph.'"
+      :note="locale === 'fr' ? 'Texte de note section FAQ.' : 'FAQ section note text.'"
       :faqs="faqs"
     />
 
+    <!-- Final CTA Section -->
     <LandingFinalCTA
-      eyebrow="On se lance ?"
-      title="Essayez MyApp et gagnez vos prochaines signatures dès cette semaine."
-      description="Connectez votre CRM, choisissez un playbook, la plateforme s’occupe des relances et des rappels."
+      :eyebrow="locale === 'fr' ? 'Eyebrow CTA final' : 'Final CTA Eyebrow'"
+      :title="locale === 'fr' ? 'Titre CTA final' : 'Final CTA Title'"
+      :description="locale === 'fr' ? 'Paragraphe de description CTA final.' : 'Final CTA description paragraph.'"
       :points="finalPoints"
       :cta="primaryCta"
-      note="Sans carte bancaire • Annulation en 1 clic"
+      :note="locale === 'fr' ? 'Texte de note CTA final' : 'Final CTA note text'"
     />
 
+    <!-- Footer -->
     <LandingFooter />
   </div>
 </template>
 
 <script setup lang="ts">
-import DigitalHive from '~/components/landing/backgrounds/DigitalHive.vue'
-import LandingBenefits from '~/components/landing/LandingBenefits.vue'
-import LandingFAQ from '~/components/landing/LandingFAQ.vue'
-import LandingFinalCTA from '~/components/landing/LandingFinalCTA.vue'
-import LandingFooter from '~/components/landing/LandingFooter.vue'
-import LandingHero from '~/components/landing/LandingHero.vue'
-import LandingHowItWorks from '~/components/landing/LandingHowItWorks.vue'
-import LandingPricing from '~/components/landing/LandingPricing.vue'
-import LandingFeatures from '~/components/landing/LandingFeatures.vue'
-import LandingProofBar from '~/components/landing/LandingProofBar.vue'
-import LandingSocialProof from '~/components/landing/LandingSocialProof.vue'
+// Internationalisation  
+const { t, locale } = useI18n()
 
-const primaryCta = { label: 'Essayer gratuitement', to: '/register' }
-const heroEyebrow = 'Nouveau : playbooks prêts en 10 minutes'
-const heroTitle = 'Obtenez des relances qui convertissent<br>sans tableur ni copier-coller.'
-const heroSubtitle = 'MyApp orchestre vos suivis B2B : connectez votre CRM, activez un playbook validé et laissez la plateforme personnaliser chaque relance au bon moment.'
+// Page metadata
+definePageMeta({
+  title: 'App Name - Generic Title'
+})
 
-const heroHighlights = [
-  { title: 'Playbooks prêts', detail: 'Séquences validées pour chaque scénario B2B.', icon: '🚀' },
-  { title: 'Sync CRM', detail: 'Pas de double saisie, scoring et tâches auto.', icon: '🔄' },
-  { title: 'Signaux chauds', detail: 'Alertes Slack quand un deal chauffe ou décroche.', icon: '⚡' }
-]
+// SEO head avec i18n - utilisation de titres statiques pour éviter les erreurs
+useHead({
+  title: locale.value === 'fr' ? 'Nom App - Titre Générique' : 'App Name - Generic Title',
+  meta: [
+    {
+      name: 'description',
+      content: locale.value === 'fr' 
+        ? 'Description générique de l\'application en français.'
+        : 'Generic application description in English.'
+    }
+  ]
+})
 
-const heroStats = [
-  { label: 'Temps gagné', value: '-12 h/sem', hint: 'Relances automatisées + rappels Slack' },
-  { label: 'Réponses en plus', value: '+34%', hint: 'Objets optimisés + personnalisation CRM' },
-  { label: 'Mise en route', value: '24 h', hint: 'Onboarding guidé, sans carte bancaire' }
-]
+// CTA principal réactif selon la langue
+const primaryCta = computed(() => ({
+  label: locale.value === 'fr' ? 'Bouton CTA' : 'CTA Button',
+  to: '/register'
+}))
 
+// Données pour les composants - utilisation de données statiques traduites dynamiquement
+const heroHighlights = computed(() => [
+  { 
+    title: locale.value === 'fr' ? 'Fonctionnalité 1' : 'Feature 1',
+    detail: locale.value === 'fr' ? 'Texte de description fonctionnalité 1.' : 'Feature 1 description text.',
+    icon: '🚀' 
+  },
+  { 
+    title: locale.value === 'fr' ? 'Fonctionnalité 2' : 'Feature 2',
+    detail: locale.value === 'fr' ? 'Texte de description fonctionnalité 2.' : 'Feature 2 description text.',
+    icon: '🔄' 
+  },
+  { 
+    title: locale.value === 'fr' ? 'Fonctionnalité 3' : 'Feature 3',
+    detail: locale.value === 'fr' ? 'Texte de description fonctionnalité 3.' : 'Feature 3 description text.',
+    icon: '⚡' 
+  }
+])
+
+const heroStats = computed(() => [
+  { 
+    label: locale.value === 'fr' ? 'Label stat 1' : 'Stat 1 Label',
+    value: locale.value === 'fr' ? 'Valeur stat 1' : 'Stat 1 Value',
+    hint: locale.value === 'fr' ? 'Texte de description stat 1' : 'Stat 1 description text'
+  },
+  { 
+    label: locale.value === 'fr' ? 'Label stat 2' : 'Stat 2 Label',
+    value: 'Valeur stat 2',
+    hint: locale.value === 'fr' ? 'Texte de description stat 2' : 'Stat 2 description text'
+  },
+  { 
+    label: locale.value === 'fr' ? 'Label stat 3' : 'Stat 3 Label',
+    value: locale.value === 'fr' ? 'Valeur stat 3' : 'Stat 3 Value',
+    hint: locale.value === 'fr' ? 'Texte de description stat 3' : 'Stat 3 description text'
+  }
+])
+
+const heroSpotlight = computed(() => ({
+  metric: locale.value === 'fr' ? 'Métrique Spotlight' : 'Spotlight Metric',
+  value: 'Valeur',
+  delta: locale.value === 'fr' ? 'Delta français' : 'Delta English'
+}))
+
+// Données statiques (logos, noms d'entreprises, etc.)
 const heroStreams = [
-  { title: 'Lisa • Inbound PME', status: 'Prêt à envoyer', time: 'Séquence 4 · Jour 3' },
-  { title: 'Dylan • Relance devis', status: 'En attente de validation', time: 'Séquence 2 · Jour 1' },
-  { title: 'Allan • POC en cours', status: 'Envoyé + rappel prévu', time: 'Séquence 5 · Jour 6' }
+  { 
+    title: locale.value === 'fr' ? 'Élément stream 1' : 'Stream Item 1', 
+    status: locale.value === 'fr' ? 'Statut 1' : 'Status 1', 
+    time: locale.value === 'fr' ? 'Info temps 1' : 'Time Info 1'
+  },
+  { 
+    title: locale.value === 'fr' ? 'Élément stream 2' : 'Stream Item 2', 
+    status: locale.value === 'fr' ? 'Statut 2' : 'Status 2', 
+    time: locale.value === 'fr' ? 'Info temps 2' : 'Time Info 2'
+  },
+  { 
+    title: locale.value === 'fr' ? 'Élément stream 3' : 'Stream Item 3', 
+    status: locale.value === 'fr' ? 'Statut 3' : 'Status 3', 
+    time: locale.value === 'fr' ? 'Info temps 3' : 'Time Info 3'
+  }
 ]
 
-const heroSpotlight = {
-  metric: 'Taux de réponse moyen',
-  value: '38%',
-  delta: '+6 pts vs dernier mois'
-}
+const proofLogos = ['Company A', 'Company B', 'Company C', 'Company D', 'Company E', 'Company F']
 
-const proofLogos = ['Solstice', 'Northwind', 'Helios', 'AtlasPay', 'Nira', 'Krescendo']
-const proofMetrics = [
-  { value: '+2 400', label: 'équipes B2B', detail: 'Sales, success et growth' },
-  { value: '34%', label: 'de temps gagné', detail: 'en moyenne après 30 jours' }
-]
-const proofRating = { score: '4.8', detail: 'Score moyen G2 et Capterra' }
+const proofMetrics = computed(() => [
+  { 
+    value: 'Valeur métrique 1',
+    label: locale.value === 'fr' ? 'Label métrique 1' : 'Metric Label 1',
+    detail: locale.value === 'fr' ? 'Détail métrique 1' : 'Metric Detail 1'
+  },
+  { 
+    value: 'Valeur métrique 2',
+    label: locale.value === 'fr' ? 'Label métrique 2' : 'Metric Label 2',
+    detail: locale.value === 'fr' ? 'Détail métrique 2' : 'Metric Detail 2'
+  }
+])
 
+const proofRating = computed(() => ({
+  score: '4.8',
+  detail: locale.value === 'fr' ? 'Description rating' : 'Rating description'
+}))
+
+// Fonctionnalités avec contenu statique pour éviter les erreurs d'apostrophes
 const features = [
   {
-    title: 'Orchestration multi-canal',
-    description: 'Emails, tâches LinkedIn et rappels téléphoniques déclenchés au bon moment selon le pipeline.',
+    title: 'Titre fonctionnalité 1',
+    description: 'Texte de description fonctionnalité 1.',
     icon: 'i-heroicons-sparkles',
-    tag: 'Playbooks',
-    points: ['Templates validés par des équipes B2B', 'Timing optimisé sur chaque étape']
+    tag: 'Tag 1',
+    points: ['Point fonctionnalité 1.1', 'Point fonctionnalité 1.2']
   },
   {
-    title: 'Sync CRM en temps réel',
-    description: 'Mises à jour et logs automatiques : plus de copie/coller ni d’oublis dans HubSpot, Pipedrive ou Salesforce.',
+    title: 'Titre fonctionnalité 2',
+    description: 'Texte de description fonctionnalité 2.',
     icon: 'i-heroicons-arrow-path-rounded-square',
-    tag: 'Ops',
-    points: ['Création de tâches et champs custom', 'Suppression auto des contacts hors opt-in']
+    tag: 'Tag 2',
+    points: ['Point fonctionnalité 2.1', 'Point fonctionnalité 2.2']
   },
   {
-    title: 'Alertes sur les signaux chauds',
-    description: 'Slack et email préviennent l’équipe quand un prospect ouvre, clique ou répond.',
+    title: 'Titre fonctionnalité 3',
+    description: 'Texte de description fonctionnalité 3.',
     icon: 'i-heroicons-bell-alert',
-    points: ['Scores de priorité mis à jour en continu', 'Notifications ciblées par équipe']
+    points: ['Point fonctionnalité 3.1', 'Point fonctionnalité 3.2']
   },
   {
-    title: 'IA de personnalisation prête à l’emploi',
-    description: 'Résumé des fiches CRM, suggestions d’angles et rédaction contextualisée en un clic.',
+    title: 'Titre fonctionnalité 4',
+    description: 'Texte de description fonctionnalité 4.',
     icon: 'i-heroicons-cpu-chip',
-    tag: 'Assistant IA',
-    points: ['Ton ajustable par persona', 'Contrôles humains avant envoi']
+    tag: 'Tag 4',
+    points: ['Point fonctionnalité 4.1', 'Point fonctionnalité 4.2']
   },
   {
-    title: 'Vue équipe et market fit',
-    description: 'Dashboards prêts : suivi par segment, par séquence et par AE.',
+    title: 'Titre fonctionnalité 5',
+    description: 'Texte de description fonctionnalité 5.',
     icon: 'i-heroicons-chart-bar-square',
-    points: ['KPIs temps réel', 'Comparaison des playbooks actifs']
+    points: ['Point fonctionnalité 5.1', 'Point fonctionnalité 5.2']
   },
   {
-    title: 'Sécurité & conformité natives',
-    description: 'Hébergement UE, permissions granulaires et audit trail complet pour chaque action.',
+    title: 'Titre fonctionnalité 6',
+    description: 'Texte de description fonctionnalité 6.',
     icon: 'i-heroicons-shield-check',
-    tag: 'Confiance',
-    points: ['Gestion fine des rôles', 'Exports sécurisés sur demande']
+    tag: 'Tag 6',
+    points: ['Point fonctionnalité 6.1', 'Point fonctionnalité 6.2']
   }
 ]
 
 const benefits = [
   {
-    title: 'Réduisez le temps de relance de 60%',
-    description: 'Playbooks prêts pour chaque moment du cycle : devis, POC, renouvellement, relances inbound.',
-    proof: '10 minutes pour lancer une séquence complète.',
+    title: 'Titre avantage 1',
+    description: 'Texte de description avantage 1.',
+    proof: 'Texte de preuve avantage 1.',
     icon: '⏱️'
   },
   {
-    title: 'Personnalisation sans tableur',
-    description: 'L’IA résume la fiche CRM, détecte les signaux clés et génère les messages contextualisés.',
-    proof: '+34% de réponses sur les campagnes personnalisées.',
+    title: 'Titre avantage 2',
+    description: 'Texte de description avantage 2.',
+    proof: 'Texte de preuve avantage 2.',
     icon: '🧠'
   },
   {
-    title: 'Priorités claires pour les SDR',
-    description: 'Scoring en temps réel, tasks auto et alertes Slack pour concentrer l’équipe là où ça chauffe.',
-    proof: 'Vos 10 deals les plus chauds chaque matin.',
+    title: 'Titre avantage 3',
+    description: 'Texte de description avantage 3.',
+    proof: 'Texte de preuve avantage 3.',
     icon: '🎯'
   },
   {
-    title: 'Ops et conformité sereines',
-    description: 'Sync bidirectionnelle avec votre CRM, gestion des opt-in, suppression automatique sur demande.',
-    proof: 'Aucune double saisie ni contact hors opt-in.',
+    title: 'Titre avantage 4',
+    description: 'Texte de description avantage 4.',
+    proof: 'Texte de preuve avantage 4.',
     icon: '🛡️'
   }
 ]
@@ -197,108 +272,108 @@ const benefits = [
 const steps = [
   {
     tag: 'Étape 1',
-    title: 'Connectez vos outils',
-    text: 'HubSpot, Pipedrive, Salesforce ou votre CRM maison via API.',
-    points: ['Import des contacts et deals en 1 clic', 'Nettoyage automatique des doublons', 'Scoring activé dès la synchro']
+    title: 'Titre étape 1',
+    text: 'Texte de description étape 1.',
+    points: ['Point étape 1.1', 'Point étape 1.2', 'Point étape 1.3']
   },
   {
     tag: 'Étape 2',
-    title: 'Choisissez un playbook validé',
-    text: 'Séquences emails, LinkedIn et tâches manuelles prêtes pour chaque cas.',
-    points: ['Templates validés par des équipes B2B', 'Personnalisation générée à partir du CRM', 'Timing optimisé selon votre cycle']
+    title: 'Titre étape 2',
+    text: 'Texte de description étape 2.',
+    points: ['Point étape 2.1', 'Point étape 2.2', 'Point étape 2.3']
   },
   {
     tag: 'Étape 3',
-    title: 'Suivez les résultats en direct',
-    text: 'La plateforme relance, notifie et met à jour votre CRM pour vous.',
-    points: ['Alertes sur les signaux chauds', 'Dashboard par équipe et par marché', 'Recommandations d’étapes suivantes']
+    title: 'Titre étape 3',
+    text: 'Texte de description étape 3.',
+    points: ['Point étape 3.1', 'Point étape 3.2', 'Point étape 3.3']
   }
 ]
 
 const testimonials = [
   {
-    quote: 'On a doublé nos prises de RDV en 6 semaines sans recruter.',
-    result: '+52% de réponses sur les séquences multi-canal',
-    name: 'Claire Dumont',
-    role: 'Head of Sales, Alto'
+    quote: 'Contenu de citation témoignage 1.',
+    result: 'Texte de résultat témoignage 1',
+    name: 'Nom Personne 1',
+    role: 'Titre Poste 1, Entreprise 1'
   },
   {
-    quote: 'Les SDR savent quoi faire chaque matin, les relances sont déjà prêtes.',
-    result: '-11 h par semaine de tâches répétitives',
-    name: 'Yanis Karim',
-    role: 'CEO, Neostack'
+    quote: 'Contenu de citation témoignage 2.',
+    result: 'Texte de résultat témoignage 2',
+    name: 'Nom Personne 2',
+    role: 'Titre Poste 2, Entreprise 2'
   },
   {
-    quote: 'On a enfin une vue fiable des relances en cours et de leur impact.',
-    result: '+18% de conversion MQL > SQL en 2 mois',
-    name: 'Leila Haddad',
-    role: 'RevOps, NovaTech'
+    quote: 'Contenu de citation témoignage 3.',
+    result: 'Texte de résultat témoignage 3',
+    name: 'Nom Personne 3',
+    role: 'Titre Poste 3, Entreprise 3'
   }
 ]
 
 const faqs = [
   {
-    question: 'Combien de temps pour démarrer ?',
-    answer: 'En moins de 30 minutes : connexion CRM, import des modèles si besoin et activation d’un playbook.'
+    question: 'Question 1 ?',
+    answer: 'Contenu de réponse 1.'
   },
   {
-    question: 'Quelles intégrations sont disponibles ?',
-    answer: 'HubSpot, Pipedrive, Salesforce, Google Sheets, Zapier et webhooks pour vos outils internes.'
+    question: 'Question 2 ?',
+    answer: 'Contenu de réponse 2.'
   },
   {
-    question: 'Puis-je garder mes modèles existants ?',
-    answer: 'Oui, import Markdown ou CSV. On vous aide à les convertir en playbooks avec personnalisation automatique.'
+    question: 'Question 3 ?',
+    answer: 'Contenu de réponse 3.'
   },
   {
-    question: 'Et la conformité / RGPD ?',
-    answer: 'Données hébergées dans l’UE, logs complets, suppression automatique sur demande et gestion fine des opt-in.'
+    question: 'Question 4 ?',
+    answer: 'Contenu de réponse 4.'
   },
   {
-    question: 'Y a-t-il un engagement ?',
-    answer: 'Non. Essai gratuit, puis abonnement mensuel. Annulation en un clic depuis l’espace client.'
+    question: 'Question 5 ?',
+    answer: 'Contenu de réponse 5.'
   },
   {
-    question: 'Comment êtes-vous différent d’un simple outil d’e-mailing ?',
-    answer: 'Nous pilotons la relance multi-canal, synchronisée au CRM et avec scoring temps réel. L’outil d’e-mailing est juste un des canaux.'
+    question: 'Question 6 ?',
+    answer: 'Contenu de réponse 6.'
   }
 ]
 
 const plans = [
   {
-    name: 'Starter',
-    description: 'Pour lancer vos premiers playbooks avec une petite équipe.',
-    price: '39€',
-    period: '/utilisateur/mois',
+    name: 'Plan 1',
+    description: 'Texte de description plan 1.',
+    price: 'Prix 1',
+    period: '/période',
     features: [
-      'Séquences illimitées email + LinkedIn',
-      'Connecteurs HubSpot & Pipedrive',
-      'Scoring deals chauds + alertes',
-      'Support email et base de connaissances'
+      'Fonctionnalité 1',
+      'Fonctionnalité 2',
+      'Fonctionnalité 3',
+      'Fonctionnalité 4'
     ],
-    note: 'Idéal pour 1 à 3 personnes.',
-    cta: primaryCta
+    note: 'Texte de note plan 1.',
+    cta: { label: 'Bouton CTA', to: '/register' }
   },
   {
-    name: 'Growth',
-    description: 'Pour les équipes qui relancent à grande échelle.',
-    price: '89€',
-    period: '/utilisateur/mois',
+    name: 'Plan 2',
+    description: 'Texte de description plan 2.',
+    price: 'Prix 2',
+    period: '/période',
     features: [
-      'Playbooks multi-équipes + rôles',
-      'Salesforce & webhooks personnalisés',
-      'Insights en temps réel + alertes Slack',
-      'CSM dédié et atelier onboarding'
+      'Fonctionnalité 1',
+      'Fonctionnalité 2',
+      'Fonctionnalité 3',
+      'Fonctionnalité 4'
     ],
-    note: 'Support prioritaire inclus.',
+    note: 'Texte de note plan 2.',
     popular: true,
-    cta: primaryCta
+    cta: { label: 'Bouton CTA', to: '/register' }
   }
 ]
 
 const finalPoints = [
-  'Playbooks prêts pour relancer dès aujourd’hui',
-  'Personnalisation automatique sans tableur',
-  'Support humain en français'
+  'Texte point 1',
+  'Texte point 2',
+  'Texte point 3'
 ]
 </script>
 
@@ -309,8 +384,6 @@ const finalPoints = [
   position: relative;
   display: flex;
   flex-direction: column;
-  /* gap: clamp(1.5rem, 3vw, 2.5rem); */
-  /* padding-bottom: 2rem; */
 }
 
 :global(.app-content) {

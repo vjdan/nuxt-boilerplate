@@ -1,0 +1,223 @@
+{
+  "common": {
+    "loading": "Chargement...",
+    "error": "Erreur",
+    "success": "Succès",
+    "cancel": "Annuler",
+    "confirm": "Confirmer",
+    "save": "Enregistrer",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "close": "Fermer",
+    "back": "Retour",
+    "next": "Suivant",
+    "previous": "Précédent",
+    "home": "Accueil",
+    "yes": "Oui",
+    "no": "Non"
+  },
+  "nav": {
+    "features": "Fonctionnalités",
+    "pricing": "Tarifs",
+    "faq": "FAQ",
+    "login": "Connexion",
+    "register": "S'inscrire",
+    "logout": "Déconnexion",
+    "dashboard": "Tableau de bord",
+    "changeLanguage": "Changer de langue"
+  },
+  "dashboard": {
+    "menu": {
+      "overview": "Aperçu",
+      "analytics": "Analytique",
+      "reports": "Rapports",
+      "insights": "Analyses",
+      "users": "Utilisateurs",
+      "allUsers": "Tous les utilisateurs",
+      "roles": "Rôles",
+      "settings": "Paramètres"
+    },
+    "breadcrumb": {
+      "dashboard": "Tableau de bord",
+      "analytics": "Analytique",
+      "reports": "Rapports",
+      "insights": "Analyses",
+      "users": "Utilisateurs",
+      "userList": "Liste des utilisateurs",
+      "roles": "Rôles",
+      "settings": "Paramètres",
+      "profile": "Profil",
+      "security": "Sécurité",
+      "notifications": "Notifications"
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Se connecter",
+      "subtitle": "Connectez-vous à votre compte",
+      "email": "Email",
+      "password": "Mot de passe",
+      "submit": "Se connecter",
+      "noAccount": "Vous n'avez pas de compte ?",
+      "signUp": "S'inscrire"
+    },
+    "register": {
+      "title": "Créer un compte",
+      "subtitle": "Commencez votre essai gratuit",
+      "name": "Nom",
+      "email": "Email",
+      "password": "Mot de passe",
+      "confirmPassword": "Confirmer le mot de passe",
+      "submit": "Créer un compte",
+      "hasAccount": "Vous avez déjà un compte ?",
+      "signIn": "Se connecter"
+    }
+  },
+  "landing": {
+    "hero": {
+      "eyebrow": "Nouveau : playbooks prêts en 10 minutes",
+      "title": "Obtenez des relances qui convertissent<br>sans tableur ni copier-coller.",
+      "subtitle": "MyApp orchestre vos suivis B2B : connectez votre CRM, activez un playbook validé et laissez la plateforme personnaliser chaque relance au bon moment.",
+      "cta": "Essayer gratuitement",
+      "note": "Sans carte bancaire • Onboarding guidé en 30 minutes",
+      "highlights": {
+        "playbooks": {
+          "title": "Playbooks prêts",
+          "detail": "Séquences validées pour chaque scénario B2B."
+        },
+        "sync": {
+          "title": "Sync CRM",
+          "detail": "Pas de double saisie, scoring et tâches auto."
+        },
+        "signals": {
+          "title": "Signaux chauds",
+          "detail": "Alertes Slack quand un deal chauffe ou décroche."
+        }
+      },
+      "stats": {
+        "timeSaved": {
+          "label": "Temps gagné",
+          "value": "-12 h/sem",
+          "hint": "Relances automatisées + rappels Slack"
+        },
+        "moreReplies": {
+          "label": "Réponses en plus",
+          "value": "+34%",
+          "hint": "Objets optimisés + personnalisation CRM"
+        },
+        "setup": {
+          "label": "Mise en route",
+          "value": "24 h",
+          "hint": "Onboarding guidé, sans carte bancaire"
+        }
+      },
+      "spotlight": {
+        "metric": "Taux de réponse moyen",
+        "value": "38%",
+        "delta": "+6 pts vs dernier mois"
+      }
+    },
+    "proofBar": {
+      "metrics": {
+        "teams": {
+          "value": "+2 400",
+          "label": "équipes B2B",
+          "detail": "Sales, success et growth"
+        },
+        "timeSaved": {
+          "value": "34%",
+          "label": "de temps gagné",
+          "detail": "en moyenne après 30 jours"
+        }
+      },
+      "rating": {
+        "score": "4.8",
+        "detail": "Score moyen G2 et Capterra"
+      }
+    },
+    "features": {
+      "eyebrow": "Fonctionnalités clés",
+      "title": "Tout ce qu'il faut pour piloter vos relances sans friction",
+      "description": "Une plateforme qui orchestre les relances, alerte vos équipes et garde votre CRM parfaitement à jour."
+    },
+    "benefits": {
+      "eyebrow": "Proposition de valeur",
+      "title": "Pourquoi choisir MyApp pour vos relances B2B ?",
+      "description": "Chaque bloc est pensé pour réduire la friction : tout est prêt, connecté à votre CRM et optimisé pour que vos équipes passent moins de temps à relancer et plus à signer."
+    },
+    "howItWorks": {
+      "eyebrow": "Comment ça marche",
+      "title": "3 étapes pour lancer vos relances sans tableur",
+      "description": "Pas de bricolage : on connecte vos outils, on active un playbook validé et vous suivez les résultats en direct."
+    },
+    "socialProof": {
+      "eyebrow": "Preuve sociale",
+      "title": "Ils ont supprimé la friction dans leurs relances",
+      "description": "Des équipes sales, success et growth qui ont besoin de visibilité et d'actions guidées chaque jour."
+    },
+    "pricing": {
+      "eyebrow": "Offre",
+      "title": "Un seul objectif : lancer vos playbooks rapidement",
+      "description": "Choisissez le plan qui vous correspond. Même CTA partout pour garder l'objectif clair.",
+      "plans": {
+        "starter": {
+          "name": "Starter",
+          "description": "Pour lancer vos premiers playbooks avec une petite équipe.",
+          "price": "39€",
+          "period": "/utilisateur/mois",
+          "note": "Idéal pour 1 à 3 personnes.",
+          "features": [
+            "Séquences illimitées email + LinkedIn",
+            "Connecteurs HubSpot & Pipedrive",
+            "Scoring deals chauds + alertes",
+            "Support email et base de connaissances"
+          ]
+        },
+        "growth": {
+          "name": "Growth",
+          "description": "Pour les équipes qui relancent à grande échelle.",
+          "price": "89€",
+          "period": "/utilisateur/mois",
+          "note": "Support prioritaire inclus.",
+          "popular": "Populaire",
+          "features": [
+            "Playbooks multi-équipes + rôles",
+            "Salesforce & webhooks personnalisés",
+            "Insights en temps réel + alertes Slack",
+            "CSM dédié et atelier onboarding"
+          ]
+        }
+      }
+    },
+    "faq": {
+      "eyebrow": "Objections fréquentes",
+      "title": "On répond avant que vous ne posiez la question",
+      "description": "Tarifs, délai de mise en route, sécurité : voici les réponses rapides pour décider sereinement.",
+      "note": "Un CSM vous accompagne sur les 30 premiers jours pour garantir un déploiement sans friction."
+    },
+    "finalCTA": {
+      "eyebrow": "On se lance ?",
+      "title": "Essayez MyApp et gagnez vos prochaines signatures dès cette semaine.",
+      "description": "Connectez votre CRM, choisissez un playbook, la plateforme s'occupe des relances et des rappels.",
+      "note": "Sans carte bancaire • Annulation en 1 clic",
+      "points": [
+        "Playbooks prêts pour relancer dès aujourd'hui",
+        "Personnalisation automatique sans tableur",
+        "Support humain en français"
+      ]
+    }
+  },
+  "forms": {
+    "required": "Requis",
+    "invalid": "Invalide",
+    "emailInvalid": "Email invalide",
+    "passwordTooShort": "Mot de passe trop court",
+    "passwordsDoNotMatch": "Les mots de passe ne correspondent pas",
+    "pleaseWait": "Veuillez patienter...",
+    "submitting": "Envoi en cours..."
+  },
+  "meta": {
+    "defaultTitle": "MyApp - Relances B2B automatisées",
+    "defaultDescription": "Orchestrez vos relances B2B sans friction. Connectez votre CRM, activez des playbooks validés et laissez l'IA personnaliser chaque message."
+  }
+}

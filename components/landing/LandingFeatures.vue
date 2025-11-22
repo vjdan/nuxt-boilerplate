@@ -52,7 +52,7 @@ defineProps<{
 
 <style scoped>
 .features {
-  background: var(--bg-page);
+  /* background: var(--bg-page); */
   padding: clamp(2.5rem, 6vw, 4.5rem) 0;
 }
 

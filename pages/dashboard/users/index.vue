@@ -1,25 +1,42 @@
 <template>
   <div class="dashboard-page">
-    <h1>Users</h1>
-    <p>Manage all users in your application</p>
+    <h1>{{ getTranslatedLabel('dashboard.pages.users.title') }}</h1>
+    <p>{{ getTranslatedLabel('dashboard.pages.users.description') }}</p>
     
     <div class="demo-cards">
       <UiCard>
-        <h3>Total Users</h3>
-        <p class="metric metric--accent">1,234</p>
+        <h3>{{ getTranslatedLabel('dashboard.pages.users.cards.0.title') }}</h3>
+        <p class="metric metric--accent">{{ getTranslatedLabel('dashboard.pages.users.cards.0.metric') }}</p>
       </UiCard>
       <UiCard>
-        <h3>Active Today</h3>
-        <p class="metric metric--success">567</p>
+        <h3>{{ getTranslatedLabel('dashboard.pages.users.cards.1.title') }}</h3>
+        <p class="metric metric--success">{{ getTranslatedLabel('dashboard.pages.users.cards.1.metric') }}</p>
       </UiCard>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { messages } from '~/locales/messages'
+
 definePageMeta({
   middleware: 'auth'
 })
+
+const { locale } = useI18n()
+
+// Translation helper function
+const getTranslatedLabel = (key: string) => {
+  const currentLocale = locale.value as 'fr' | 'en'
+  const keys = key.split('.')
+  let value: any = messages[currentLocale]
+  
+  for (const k of keys) {
+    value = value?.[k]
+  }
+  
+  return value || key
+}
 </script>
 
 <style scoped>

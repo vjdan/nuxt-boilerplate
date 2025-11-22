@@ -5,7 +5,7 @@
       <!-- Logo / Brand -->
       <NuxtLink to="/" class="dashboard-sidebar__brand">
         <div class="dashboard-sidebar__logo">✦</div>
-        <span class="dashboard-sidebar__name">MyApp</span>
+        <span class="dashboard-sidebar__name">{{ getTranslatedLabel('common.appName') }}</span>
       </NuxtLink>
 
       <!-- Navigation Menu -->
@@ -42,7 +42,7 @@
       <template #header>
         <div class="dashboard-sidebar__drawer-brand">
           <div class="dashboard-sidebar__logo">✦</div>
-          <span class="dashboard-sidebar__name">MyApp</span>
+          <span class="dashboard-sidebar__name">{{ getTranslatedLabel('common.appName') }}</span>
         </div>
 
       </template>
@@ -78,10 +78,25 @@
 
 <script setup lang="ts">
 import { dashboardMenuItems } from '~/config/navigation'
+import { messages } from '~/locales/messages'
 
 const { user, logout } = useAuth()
+const { locale } = useI18n()
 const route = useRoute()
 const mobileOpen = useState('dashboardMobileSidebarOpen', () => false)
+
+// Translation helper function
+const getTranslatedLabel = (key: string) => {
+  const currentLocale = locale.value as 'fr' | 'en'
+  const keys = key.split('.')
+  let value: any = messages[currentLocale]
+  
+  for (const k of keys) {
+    value = value?.[k]
+  }
+  
+  return value || key
+}
 
 const userInitials = computed(() => {
   if (!user.value?.email) return '?'

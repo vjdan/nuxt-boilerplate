@@ -1,0 +1,223 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "home": "Home",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "nav": {
+    "features": "Features",
+    "pricing": "Pricing",
+    "faq": "FAQ",
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout",
+    "dashboard": "Dashboard",
+    "changeLanguage": "Change language"
+  },
+  "dashboard": {
+    "menu": {
+      "overview": "Overview",
+      "analytics": "Analytics",
+      "reports": "Reports",
+      "insights": "Insights",
+      "users": "Users",
+      "allUsers": "All Users",
+      "roles": "Roles",
+      "settings": "Settings"
+    },
+    "breadcrumb": {
+      "dashboard": "Dashboard",
+      "analytics": "Analytics",
+      "reports": "Reports",
+      "insights": "Insights",
+      "users": "Users",
+      "userList": "User List",
+      "roles": "Roles",
+      "settings": "Settings",
+      "profile": "Profile",
+      "security": "Security",
+      "notifications": "Notifications"
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Sign In",
+      "subtitle": "Log in to your account",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Sign In",
+      "noAccount": "Don't have an account?",
+      "signUp": "Sign up"
+    },
+    "register": {
+      "title": "Create Account",
+      "subtitle": "Start your free trial",
+      "name": "Name",
+      "email": "Email",
+      "password": "Password",
+      "confirmPassword": "Confirm Password",
+      "submit": "Create Account",
+      "hasAccount": "Already have an account?",
+      "signIn": "Sign in"
+    }
+  },
+  "landing": {
+    "hero": {
+      "eyebrow": "New: playbooks ready in 10 minutes",
+      "title": "Get follow-ups that convert<br>without spreadsheets or copy-paste.",
+      "subtitle": "MyApp orchestrates your B2B follow-ups: connect your CRM, activate a validated playbook, and let the platform personalize each follow-up at the right moment.",
+      "cta": "Try for Free",
+      "note": "No credit card required • Guided onboarding in 30 minutes",
+      "highlights": {
+        "playbooks": {
+          "title": "Ready Playbooks",
+          "detail": "Validated sequences for every B2B scenario."
+        },
+        "sync": {
+          "title": "CRM Sync",
+          "detail": "No double entry, automated scoring and tasks."
+        },
+        "signals": {
+          "title": "Hot Signals",
+          "detail": "Slack alerts when a deal heats up or drops."
+        }
+      },
+      "stats": {
+        "timeSaved": {
+          "label": "Time Saved",
+          "value": "-12 h/week",
+          "hint": "Automated follow-ups + Slack reminders"
+        },
+        "moreReplies": {
+          "label": "More Replies",
+          "value": "+34%",
+          "hint": "Optimized subjects + CRM personalization"
+        },
+        "setup": {
+          "label": "Setup Time",
+          "value": "24 h",
+          "hint": "Guided onboarding, no credit card"
+        }
+      },
+      "spotlight": {
+        "metric": "Average Response Rate",
+        "value": "38%",
+        "delta": "+6 pts vs last month"
+      }
+    },
+    "proofBar": {
+      "metrics": {
+        "teams": {
+          "value": "+2,400",
+          "label": "B2B teams",
+          "detail": "Sales, success, and growth"
+        },
+        "timeSaved": {
+          "value": "34%",
+          "label": "time saved",
+          "detail": "on average after 30 days"
+        }
+      },
+      "rating": {
+        "score": "4.8",
+        "detail": "Average G2 and Capterra score"
+      }
+    },
+    "features": {
+      "eyebrow": "Key Features",
+      "title": "Everything you need to manage follow-ups without friction",
+      "description": "A platform that orchestrates follow-ups, alerts your teams, and keeps your CRM perfectly up to date."
+    },
+    "benefits": {
+      "eyebrow": "Value Proposition",
+      "title": "Why choose MyApp for your B2B follow-ups?",
+      "description": "Every feature is designed to reduce friction: everything is ready, connected to your CRM, and optimized so your teams spend less time following up and more time closing."
+    },
+    "howItWorks": {
+      "eyebrow": "How It Works",
+      "title": "3 steps to launch your follow-ups without spreadsheets",
+      "description": "No DIY solutions: we connect your tools, activate a validated playbook, and you track results in real-time."
+    },
+    "socialProof": {
+      "eyebrow": "Social Proof",
+      "title": "They eliminated friction in their follow-ups",
+      "description": "Sales, success, and growth teams that need visibility and guided actions every day."
+    },
+    "pricing": {
+      "eyebrow": "Pricing",
+      "title": "One goal: launch your playbooks quickly",
+      "description": "Choose the plan that fits you. Same CTA everywhere to keep the objective clear.",
+      "plans": {
+        "starter": {
+          "name": "Starter",
+          "description": "To launch your first playbooks with a small team.",
+          "price": "39€",
+          "period": "/user/month",
+          "note": "Ideal for 1 to 3 people.",
+          "features": [
+            "Unlimited email + LinkedIn sequences",
+            "HubSpot & Pipedrive connectors",
+            "Hot deal scoring + alerts",
+            "Email support and knowledge base"
+          ]
+        },
+        "growth": {
+          "name": "Growth",
+          "description": "For teams that follow up at scale.",
+          "price": "89€",
+          "period": "/user/month",
+          "note": "Priority support included.",
+          "popular": "Popular",
+          "features": [
+            "Multi-team playbooks + roles",
+            "Salesforce & custom webhooks",
+            "Real-time insights + Slack alerts",
+            "Dedicated CSM and onboarding workshop"
+          ]
+        }
+      }
+    },
+    "faq": {
+      "eyebrow": "Common Questions",
+      "title": "We answer before you even ask",
+      "description": "Pricing, setup time, security: here are quick answers to decide with confidence.",
+      "note": "A CSM accompanies you for the first 30 days to guarantee frictionless deployment."
+    },
+    "finalCTA": {
+      "eyebrow": "Ready to start?",
+      "title": "Try MyApp and win your next deals this week.",
+      "description": "Connect your CRM, choose a playbook, the platform handles follow-ups and reminders.",
+      "note": "No credit card required • Cancel in 1 click",
+      "points": [
+        "Ready playbooks to follow up today",
+        "Automatic personalization without spreadsheets",
+        "Human support in French"
+      ]
+    }
+  },
+  "forms": {
+    "required": "Required",
+    "invalid": "Invalid",
+    "emailInvalid": "Invalid email",
+    "passwordTooShort": "Password too short",
+    "passwordsDoNotMatch": "Passwords do not match",
+    "pleaseWait": "Please wait...",
+    "submitting": "Submitting..."
+  },
+  "meta": {
+    "defaultTitle": "MyApp - Automated B2B Follow-ups",
+    "defaultDescription": "Orchestrate your B2B follow-ups without friction. Connect your CRM, activate validated playbooks, and let AI personalize every message."
+  }
+}

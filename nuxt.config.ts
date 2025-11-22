@@ -14,7 +14,21 @@ if (!crypto.hash) {
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
-  modules: ['@nuxt/ui', '@nuxt/image', '@nuxt/eslint'],
+  modules: ['@nuxt/ui', '@nuxt/image', '@nuxt/eslint', '@nuxtjs/i18n'],
+  
+  i18n: {
+    strategy: 'no_prefix',
+    defaultLocale: 'fr',
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_redirected',
+      redirectOn: 'root',
+      alwaysRedirect: false,
+      fallbackLocale: 'fr'
+    },
+    locales: ['fr', 'en'],
+    vueI18n: './i18n.config.ts'
+  },
   css: ['~/assets/css/theme.css'],
   alias: {
     'pixi.js': 'pixi.js/dist/pixi.mjs'

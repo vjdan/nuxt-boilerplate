@@ -3,9 +3,9 @@
   <AuthWrapper glow-position="right">
     <template #panel>
       <AuthPanelContent
-        eyebrow="Welcome"
-        title="Sign in to continue."
-        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        :eyebrow="getTranslatedLabel('auth.login.eyebrow')"
+        :title="getTranslatedLabel('auth.login.title')"
+        :description="getTranslatedLabel('auth.login.description')"
         :highlights="highlights"
       >
         <div class="panel-stats">
@@ -18,9 +18,9 @@
     </template>
 
     <template #form>
-      <AuthFormHeader title="Sign in">
+      <AuthFormHeader :title="getTranslatedLabel('auth.login.formTitle')">
         <template #subtitle>
-          or <NuxtLink to="/register">create new account</NuxtLink>
+          {{ getTranslatedLabel('auth.login.subtitlePrefix') }} <NuxtLink to="/register">{{ getTranslatedLabel('auth.login.subtitleLink') }}</NuxtLink>
         </template>
       </AuthFormHeader>
 
@@ -28,16 +28,16 @@
         <UiInput
           v-model="form.email"
           type="email"
-          label="Email address"
-          placeholder="you@example.com"
+          :label="getTranslatedLabel('auth.common.email')"
+          :placeholder="getTranslatedLabel('auth.common.emailPlaceholder')"
           required
         />
 
         <UiInput
           v-model="form.password"
           type="password"
-          label="Password"
-          placeholder="••••••••"
+          :label="getTranslatedLabel('auth.common.password')"
+          :placeholder="getTranslatedLabel('auth.common.passwordPlaceholder')"
           required
         />
 
@@ -51,7 +51,7 @@
           :loading="loading"
           block
         >
-          Sign in
+          {{ getTranslatedLabel('auth.login.submit') }}
         </UiButton>
       </form>
     </template>
@@ -60,8 +60,10 @@
 
 <script setup lang="ts">
 import AuroraBackground from '~/components/landing/backgrounds/InteractiveEnergyFlows.vue'
+import { messages } from '~/locales/messages'
 
 const { login, loading } = useAuth()
+const { locale } = useI18n()
 const router = useRouter()
 
 const form = reactive({
@@ -71,16 +73,29 @@ const form = reactive({
 
 const error = ref('')
 
-const highlights = [
-  'Secure authentication',
-  'Easy access to features',
-  'Simple and intuitive'
-]
+// Translation helper function
+const getTranslatedLabel = (key: string) => {
+  const currentLocale = locale.value as 'fr' | 'en'
+  const keys = key.split('.')
+  let value: any = messages[currentLocale]
+  
+  for (const k of keys) {
+    value = value?.[k]
+  }
+  
+  return value || key
+}
 
-const panelStats = [
-  { value: '99%', label: 'Uptime' },
-  { value: '24/7', label: 'Support' }
-]
+const highlights = computed(() => [
+  getTranslatedLabel('auth.login.highlights.0'),
+  getTranslatedLabel('auth.login.highlights.1'), 
+  getTranslatedLabel('auth.login.highlights.2')
+])
+
+const panelStats = computed(() => [
+  { value: getTranslatedLabel('auth.login.panelStats.0.value'), label: getTranslatedLabel('auth.login.panelStats.0.label') },
+  { value: getTranslatedLabel('auth.login.panelStats.1.value'), label: getTranslatedLabel('auth.login.panelStats.1.label') }
+])
 
 const handleLogin = async () => {
   error.value = ''
@@ -88,7 +103,7 @@ const handleLogin = async () => {
   if (success) {
     router.push('/dashboard')
   } else {
-    error.value = 'Invalid email or password'
+    error.value = getTranslatedLabel('auth.errors.invalidCredentials')
   }
 }
 </script>

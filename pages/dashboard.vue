@@ -3,9 +3,9 @@
     <UContainer>
       <section class="overview">
         <div class="overview-copy">
-          <p class="eyebrow">Command center</p>
-          <h1>Welcome back 👋</h1>
-          <p>Here’s your live product + revenue pulse. Everything is responsive, so the cockpit keeps pace across devices.</p>
+          <p class="eyebrow">{{ getTranslatedLabel('dashboard.overview.eyebrow') }}</p>
+          <h1>{{ getTranslatedLabel('dashboard.overview.title') }}</h1>
+          <p>{{ getTranslatedLabel('dashboard.overview.intro') }}</p>
           <ul>
             <li v-for="point in highlights" :key="point">{{ point }}</li>
           </ul>
@@ -16,30 +16,30 @@
             </div>
           </div>
           <div class="welcome-actions">
-            <NuxtLink to="/dashboard/settings" class="ghost">View settings</NuxtLink>
-            <NuxtLink to="/dashboard/analytics/reports" class="solid">View reports</NuxtLink>
+            <NuxtLink to="/dashboard/settings" class="ghost">{{ getTranslatedLabel('dashboard.overview.actions.viewSettings') }}</NuxtLink>
+            <NuxtLink to="/dashboard/analytics/reports" class="solid">{{ getTranslatedLabel('dashboard.overview.actions.viewReports') }}</NuxtLink>
           </div>
         </div>
         <div class="overview-panels">
           <div class="trend-card">
             <header>
               <div>
-                <p>ARR trend</p>
-                <strong>$2.4M</strong>
+                <p>{{ getTranslatedLabel('dashboard.overview.trend.title') }}</p>
+                <strong>{{ getTranslatedLabel('dashboard.overview.trend.value') }}</strong>
               </div>
-              <span class="positive">+18.4%</span>
+              <span class="positive">{{ getTranslatedLabel('dashboard.overview.trend.change') }}</span>
             </header>
             <div class="trend-graph">
               <span v-for="(point, idx) in trendPoints" :key="idx" :style="{ height: `${point}%` }" />
             </div>
             <footer>
-              <p>Forecast locked • Next review Friday</p>
+              <p>{{ getTranslatedLabel('dashboard.overview.trend.footer') }}</p>
             </footer>
           </div>
           <div class="priority-card">
             <header>
-              <h3>Priority queue</h3>
-              <UButton size="xs" variant="soft">View all</UButton>
+              <h3>{{ getTranslatedLabel('dashboard.overview.priority.title') }}</h3>
+              <UButton size="xs" variant="soft">{{ getTranslatedLabel('dashboard.overview.priority.viewAll') }}</UButton>
             </header>
             <ul>
               <li v-for="task in priorityTasks" :key="task.title">
@@ -70,10 +70,10 @@
           <template #header>
             <div class="panel-heading">
               <div>
-                <p class="eyebrow">Automation health</p>
-                <h3>Active playbooks</h3>
+                <p class="eyebrow">{{ getTranslatedLabel('dashboard.overview.playbooks.eyebrow') }}</p>
+                <h3>{{ getTranslatedLabel('dashboard.overview.playbooks.title') }}</h3>
               </div>
-              <UButton size="xs" variant="soft">Share</UButton>
+              <UButton size="xs" variant="soft">{{ getTranslatedLabel('dashboard.overview.playbooks.action') }}</UButton>
             </div>
           </template>
           <div class="playbook-list">
@@ -91,8 +91,8 @@
           <template #header>
             <div class="panel-heading">
               <div>
-                <p class="eyebrow">Activity</p>
-                <h3>Recent timeline</h3>
+                <p class="eyebrow">{{ getTranslatedLabel('dashboard.overview.activity.eyebrow') }}</p>
+                <h3>{{ getTranslatedLabel('dashboard.overview.activity.title') }}</h3>
               </div>
             </div>
           </template>
@@ -112,8 +112,8 @@
           <template #header>
             <div class="panel-heading">
               <div>
-                <p class="eyebrow">Integrations</p>
-                <h3>Live data sources</h3>
+                <p class="eyebrow">{{ getTranslatedLabel('dashboard.overview.integrations.eyebrow') }}</p>
+                <h3>{{ getTranslatedLabel('dashboard.overview.integrations.title') }}</h3>
               </div>
             </div>
           </template>
@@ -134,52 +134,126 @@
 </template>
 
 <script setup lang="ts">
+import { messages } from '~/locales/messages'
+
 definePageMeta({
   middleware: 'auth'
 });
 
 const { user } = useAuth()
+const { locale } = useI18n()
 
-const highlights = ['Usage anomalies flagged automatically', 'AI updates pipeline notes in Slack', 'Experiments tracked across devices']
+// Translation helper function
+const getTranslatedLabel = (key: string) => {
+  const currentLocale = locale.value as 'fr' | 'en'
+  const keys = key.split('.')
+  let value: any = messages[currentLocale]
+  
+  for (const k of keys) {
+    value = value?.[k]
+  }
+  
+  return value || key
+}
 
-const chips = [
-  { label: 'ARR', value: '$2.4M' },
-  { label: 'NRR', value: '129%' },
-  { label: 'Experiments', value: '8 live' }
-]
+const highlights = computed(() => [
+  getTranslatedLabel('dashboard.overview.highlights.0'),
+  getTranslatedLabel('dashboard.overview.highlights.1'), 
+  getTranslatedLabel('dashboard.overview.highlights.2')
+])
 
-const stats = [
-  { label: 'Pipeline influenced', value: '$480k', change: '+12.4%', icon: 'i-heroicons-chart-bar', color: '#22c55e' },
-  { label: 'Risk accounts', value: '32', change: '-5 this week', icon: 'i-heroicons-exclamation-triangle', color: '#f97316' },
-  { label: 'Journeys live', value: '14', change: '+3 launched', icon: 'i-heroicons-bolt', color: '#38bdf8' },
-  { label: 'Signals processed', value: '1.3M', change: 'Realtime', icon: 'i-heroicons-sparkles', color: '#a855f7' }
-]
+const chips = computed(() => [
+  { label: getTranslatedLabel('dashboard.overview.chips.arr'), value: '$2.4M' },
+  { label: getTranslatedLabel('dashboard.overview.chips.nrr'), value: '129%' },
+  { label: getTranslatedLabel('dashboard.overview.chips.experiments'), value: '8 live' }
+])
+
+const stats = computed(() => [
+  { label: getTranslatedLabel('dashboard.overview.stats.0.label'), value: '$480k', change: '+12.4%', icon: 'i-heroicons-chart-bar', color: '#22c55e' },
+  { label: getTranslatedLabel('dashboard.overview.stats.1.label'), value: '32', change: getTranslatedLabel('dashboard.overview.stats.1.change'), icon: 'i-heroicons-exclamation-triangle', color: '#f97316' },
+  { label: getTranslatedLabel('dashboard.overview.stats.2.label'), value: '14', change: getTranslatedLabel('dashboard.overview.stats.2.change'), icon: 'i-heroicons-bolt', color: '#38bdf8' },
+  { label: getTranslatedLabel('dashboard.overview.stats.3.label'), value: '1.3M', change: getTranslatedLabel('dashboard.overview.stats.3.change'), icon: 'i-heroicons-sparkles', color: '#a855f7' }
+])
 
 const trendPoints = [45, 62, 58, 70, 64, 76, 82, 75, 88, 80, 92, 86]
 
-const priorityTasks = [
-  { title: 'Enterprise renewal', detail: 'Acme Inc. up for renewal in 6 days', action: 'Open room' },
-  { title: 'Usage spike', detail: 'Orbit analytics ↑ 42% week over week', action: 'Alert reps' },
-  { title: 'Dormant segment', detail: '12 workspaces inactive for 30 days', action: 'Review copy' }
-]
+const priorityTasks = computed(() => [
+  { 
+    title: getTranslatedLabel('dashboard.overview.priority.tasks.0.title'), 
+    detail: getTranslatedLabel('dashboard.overview.priority.tasks.0.detail'), 
+    action: getTranslatedLabel('dashboard.overview.priority.tasks.0.action') 
+  },
+  { 
+    title: getTranslatedLabel('dashboard.overview.priority.tasks.1.title'), 
+    detail: getTranslatedLabel('dashboard.overview.priority.tasks.1.detail'), 
+    action: getTranslatedLabel('dashboard.overview.priority.tasks.1.action') 
+  },
+  { 
+    title: getTranslatedLabel('dashboard.overview.priority.tasks.2.title'), 
+    detail: getTranslatedLabel('dashboard.overview.priority.tasks.2.detail'), 
+    action: getTranslatedLabel('dashboard.overview.priority.tasks.2.action') 
+  }
+])
 
-const playbooks = [
-  { name: 'Expansion radar', description: 'Flags customers with >20% usage spike', status: 'Running' },
-  { name: 'Renewal autopilot', description: 'Orchestrates 90-day success plan', status: 'Running' },
-  { name: 'Dormant win-back', description: 'AI writes outreach for inactive teams', status: 'Paused' }
-]
+const playbooks = computed(() => [
+  { 
+    name: getTranslatedLabel('dashboard.overview.playbooks.0.name'), 
+    description: getTranslatedLabel('dashboard.overview.playbooks.0.description'), 
+    status: getTranslatedLabel('dashboard.overview.playbooks.0.status') 
+  },
+  { 
+    name: getTranslatedLabel('dashboard.overview.playbooks.1.name'), 
+    description: getTranslatedLabel('dashboard.overview.playbooks.1.description'), 
+    status: getTranslatedLabel('dashboard.overview.playbooks.1.status') 
+  },
+  { 
+    name: getTranslatedLabel('dashboard.overview.playbooks.2.name'), 
+    description: getTranslatedLabel('dashboard.overview.playbooks.2.description'), 
+    status: getTranslatedLabel('dashboard.overview.playbooks.2.status') 
+  }
+])
 
-const activities = [
-  { title: 'Workspace created', copy: 'Your account was successfully provisioned', time: '2m ago', intent: 'success' },
-  { title: 'Segment synced', copy: 'Product metrics from Snowflake refreshed', time: '18m ago', intent: 'info' },
-  { title: 'Playbook shipped', copy: 'Expansion radar pushed to Salesforce', time: '1h ago', intent: 'primary' }
-]
+const activities = computed(() => [
+  { 
+    title: getTranslatedLabel('dashboard.overview.activity.list.0.title'), 
+    copy: getTranslatedLabel('dashboard.overview.activity.list.0.copy'), 
+    time: getTranslatedLabel('dashboard.overview.activity.list.0.time'), 
+    intent: 'success' 
+  },
+  { 
+    title: getTranslatedLabel('dashboard.overview.activity.list.1.title'), 
+    copy: getTranslatedLabel('dashboard.overview.activity.list.1.copy'), 
+    time: getTranslatedLabel('dashboard.overview.activity.list.1.time'), 
+    intent: 'info' 
+  },
+  { 
+    title: getTranslatedLabel('dashboard.overview.activity.list.2.title'), 
+    copy: getTranslatedLabel('dashboard.overview.activity.list.2.copy'), 
+    time: getTranslatedLabel('dashboard.overview.activity.list.2.time'), 
+    intent: 'primary' 
+  }
+])
 
-const integrations = [
-  { name: 'Stripe', status: 'Billing + invoices', sync: '2m ago', color: '#22d3ee' },
-  { name: 'Snowflake', status: 'Product warehouse', sync: '5m ago', color: '#38bdf8' },
-  { name: 'HubSpot', status: 'CRM & deals', sync: '12m ago', color: '#f97316' }
-]
+const integrations = computed(() => [
+  { 
+    name: getTranslatedLabel('dashboard.overview.integrations.list.0.name'), 
+    status: getTranslatedLabel('dashboard.overview.integrations.list.0.status'), 
+    sync: getTranslatedLabel('dashboard.overview.integrations.list.0.sync'), 
+    color: '#22d3ee' 
+  },
+  { 
+    name: getTranslatedLabel('dashboard.overview.integrations.list.1.name'), 
+    status: getTranslatedLabel('dashboard.overview.integrations.list.1.status'), 
+    sync: getTranslatedLabel('dashboard.overview.integrations.list.1.sync'), 
+    color: '#38bdf8' 
+  },
+  { 
+    name: getTranslatedLabel('dashboard.overview.integrations.list.2.name'), 
+    status: getTranslatedLabel('dashboard.overview.integrations.list.2.status'), 
+    sync: getTranslatedLabel('dashboard.overview.integrations.list.2.sync'), 
+    color: '#f97316' 
+  }
+])
 </script>
 
 <style scoped>

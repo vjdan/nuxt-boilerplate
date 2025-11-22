@@ -5,50 +5,79 @@
         <div class="brand">
           <div class="logo">✦</div>
           <div>
-            <p class="name">MyApp</p>
-            <p class="tagline">La plateforme de relance qui enlève la friction aux équipes B2B.</p>
+            <p class="name">{{ getTranslatedLabel('common.appName') }}</p>
+            <p class="tagline">{{ getTranslatedLabel('landing.footer.tagline') }}</p>
           </div>
           <div class="chips">
-            <span>RGPD-ready</span>
-            <span>Support en français</span>
+            <span v-for="chip in footerChips" :key="chip">{{ chip }}</span>
           </div>
         </div>
 
         <div class="links">
-          <p>Produit</p>
-          <a href="#benefits">Bénéfices</a>
-          <a href="#how-it-works">Comment ça marche</a>
-          <a href="#pricing">Tarifs</a>
-          <a href="#faq">FAQ</a>
+          <p>{{ getTranslatedLabel('landing.footer.columns.product.title') }}</p>
+          <a v-for="link in productLinks" :key="link.label" :href="link.href">{{ link.label }}</a>
         </div>
 
         <div class="links">
-          <p>Ressources</p>
-          <a href="#temoignages">Témoignages</a>
-          <a href="#preuve">Preuves</a>
-          <a href="#">Guides</a>
-          <a href="#">Webinars</a>
+          <p>{{ getTranslatedLabel('landing.footer.columns.resources.title') }}</p>
+          <a v-for="link in resourceLinks" :key="link.label" :href="link.href">{{ link.label }}</a>
         </div>
 
         <div class="links">
-          <p>Contact</p>
-          <a href="mailto:hello@myapp.com">hello@myapp.com</a>
-          <a href="tel:+33102030405">+33 1 02 03 04 05</a>
-          <a href="#">LinkedIn</a>
-          <a href="#">Slack communauté</a>
+          <p>{{ getTranslatedLabel('landing.footer.columns.contact.title') }}</p>
+          <a v-for="link in contactLinks" :key="link.label" :href="link.href">{{ link.label }}</a>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>© {{ new Date().getFullYear() }} MyApp. Tous droits réservés.</p>
+        <p>{{ getTranslatedLabel('landing.footer.bottom.rights').replace('{year}', currentYear.toString()) }}</p>
         <div class="bottom-links">
-          <a href="#">Sécurité</a>
-          <a href="#">Politique de confidentialité</a>
-          <a href="#">CGU</a>
+          <a v-for="legal in legalLinks" :key="legal" href="#">{{ legal }}</a>
         </div>
       </div>
     </UContainer>
   </footer>
 </template>
+
+<script setup lang="ts">
+import { messages } from '~/locales/messages'
+
+const { locale } = useI18n()
+
+// Translation helper function
+const getTranslatedLabel = (key: string) => {
+  const currentLocale = locale.value as 'fr' | 'en'
+  const keys = key.split('.')
+  let value: any = messages[currentLocale]
+  
+  for (const k of keys) {
+    value = value?.[k]
+  }
+  
+  return value || key
+}
+
+const currentYear = new Date().getFullYear()
+
+const footerChips = computed(() => 
+  getTranslatedLabel('landing.footer.chips') || []
+)
+
+const productLinks = computed(() => 
+  getTranslatedLabel('landing.footer.columns.product.links') || []
+)
+
+const resourceLinks = computed(() => 
+  getTranslatedLabel('landing.footer.columns.resources.links') || []
+)
+
+const contactLinks = computed(() => 
+  getTranslatedLabel('landing.footer.columns.contact.links') || []
+)
+
+const legalLinks = computed(() => 
+  getTranslatedLabel('landing.footer.bottom.legal') || []
+)
+</script>
 
 <style scoped>
 .footer {

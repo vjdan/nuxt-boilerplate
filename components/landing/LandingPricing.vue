@@ -81,7 +81,7 @@ defineProps<{
 
 <style scoped>
 .pricing {
-  background-color: var(--bg-page);
+  /* background-color: var(--bg-page); */
   padding: clamp(2.5rem, 6vw, 4.5rem) 0;
 }
 

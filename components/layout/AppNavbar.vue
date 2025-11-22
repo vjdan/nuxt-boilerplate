@@ -1,11 +1,11 @@
 <template>
-  <header class="app-navbar">
+  <header class="app-navbar" :class="{ 'app-navbar--dashboard': isDashboard }">
     <UContainer>
       <div class="app-navbar__inner">
         <!-- Logo + Brand -->
         <NuxtLink to="/" class="app-navbar__brand">
           <div class="app-navbar__logo">✦</div>
-          <span class="app-navbar__name">MyApp</span>
+          <span class="app-navbar__name">{{ getTranslatedLabel('common.appName') }}</span>
         </NuxtLink>
 
         <!-- Desktop Navigation -->
@@ -16,7 +16,7 @@
             :to="link.to"
             class="app-navbar__link"
           >
-            {{ link.label }}
+            {{ getTranslatedLabel(link.label) }}
           </NuxtLink>
         </nav>
 
@@ -24,20 +24,21 @@
         <div class="app-navbar__actions app-navbar__desktop-right">
           <template v-if="user">
             <NuxtLink to="/dashboard" class="app-navbar__btn app-navbar__btn--secondary">
-              Dashboard
+              {{ getTranslatedLabel('nav.dashboard') }}
             </NuxtLink>
             <button class="app-navbar__btn app-navbar__btn--ghost" @click="handleLogout">
-              Logout
+              {{ getTranslatedLabel('nav.logout') }}
             </button>
           </template>
           <template v-else>
             <NuxtLink to="/login" class="app-navbar__btn app-navbar__btn--ghost">
-              Login
+              {{ getTranslatedLabel('nav.login') }}
             </NuxtLink>
             <NuxtLink to="/register" class="app-navbar__btn app-navbar__btn--ghost">
-              Register
+              {{ getTranslatedLabel('nav.register') }}
             </NuxtLink>
           </template>
+          <LanguageToggle class="app-navbar__language-toggle" />
           <ThemeToggle class="app-__theme-toggle"/>
         </div>
 
@@ -45,6 +46,7 @@
 
         <div class="app-navbar__mobile-right">
           <ThemeToggle class="app-navbar__theme-toggle"/>
+          <LanguageToggle class="app-navbar__language-toggle" />
           <!-- Mobile Menu Button -->
           <button
             class="app-navbar__burger"
@@ -65,11 +67,30 @@
       <template #header>
         <div class="app-navbar__drawer-brand">
           <div class="app-navbar__logo">✦</div>
-          <span class="app-navbar__name">MyApp</span>
+          <span class="app-navbar__name">{{ getTranslatedLabel('common.appName') }}</span>
         </div>
       </template>
 
+      
       <nav class="app-navbar__drawer-nav">
+        <template v-if="user">
+          <NuxtLink
+            to="/dashboard"
+            class="app-navbar__drawer-link"
+            @click="closeDrawer"
+          >
+            {{ getTranslatedLabel('nav.dashboard') }}
+          </NuxtLink>
+          <button
+            class="app-navbar__drawer-link"
+            @click="handleLogoutMobile"
+          >
+            {{ getTranslatedLabel('nav.logout') }}
+          </button>
+        </template>
+
+        <div v-if="user" class="app-navbar__drawer-divider" />
+
         <NuxtLink
           v-for="link in publicNavLinks"
           :key="link.to"
@@ -77,34 +98,17 @@
           class="app-navbar__drawer-link"
           @click="closeDrawer"
         >
-          {{ link.label }}
+          {{ getTranslatedLabel(link.label) }}
         </NuxtLink>
 
-        <div class="app-navbar__drawer-divider" />
-
-        <template v-if="user">
-          <NuxtLink
-            to="/dashboard"
-            class="app-navbar__drawer-link"
-            @click="closeDrawer"
-          >
-            Dashboard
-          </NuxtLink>
-          <button
-            class="app-navbar__drawer-link"
-            @click="handleLogoutMobile"
-          >
-            Logout
-          </button>
-        </template>
-
-        <template v-else>
+        <div v-if="!user" class="app-navbar__drawer-divider" />
+        <template v-if="!user">
           <NuxtLink
             to="/login"
             class="app-navbar__drawer-link"
             @click="closeDrawer"
           >
-            Login
+            {{ getTranslatedLabel('nav.login') }}
           </NuxtLink>
           
           <NuxtLink
@@ -112,7 +116,7 @@
             class="app-navbar__drawer-link"
             @click="closeDrawer"
           >
-            Register
+            {{ getTranslatedLabel('nav.register') }}
           </NuxtLink>
                   <div class="app-navbar__drawer-toggle">
         </div>
@@ -124,13 +128,38 @@
 
 <script setup lang="ts">
 import { publicNavLinks } from '~/config/navigation'
+import { messages } from '~/locales/messages'
 
 const { user, logout } = useAuth()
+const { locale } = useI18n()
 const route = useRoute()
 const drawerOpen = ref(false)
 
+// Check if we're on dashboard
+const isDashboard = computed(() => route.path.startsWith('/dashboard'))
+
+// Use dashboard sidebar state when on dashboard
+const dashboardMobileSidebarOpen = useState('dashboardMobileSidebarOpen', () => false)
+
+// Translation helper function matching the approach used in index.vue
+const getTranslatedLabel = (key: string) => {
+  const currentLocale = locale.value as 'fr' | 'en'
+  const keys = key.split('.')
+  let value: any = messages[currentLocale]
+  
+  for (const k of keys) {
+    value = value?.[k]
+  }
+  
+  return value || key
+}
+
 const toggleDrawer = () => {
-  drawerOpen.value = !drawerOpen.value
+  if (isDashboard.value) {
+    dashboardMobileSidebarOpen.value = !dashboardMobileSidebarOpen.value
+  } else {
+    drawerOpen.value = !drawerOpen.value
+  }
 }
 
 const closeDrawer = () => {
@@ -162,6 +191,12 @@ watch(() => route.fullPath, () => {
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
   box-shadow: var(--nav-shadow);
+}
+
+.app-navbar--dashboard {
+  @media (min-width: 768px) {
+    display: none;
+  }
 }
 
 .app-navbar__inner {
@@ -234,7 +269,7 @@ watch(() => route.fullPath, () => {
 .app-navbar__actions {
   display: none;
   align-items: center;
-  gap: 0.5rem;
+  gap: 8px;
   margin-left: auto;
 }
 
@@ -296,6 +331,7 @@ watch(() => route.fullPath, () => {
 
 .app-navbar__burger {
   display: flex;
+  padding: 10px;
   flex-direction: column;
   gap: 5px;
   width: 40px;
@@ -306,7 +342,6 @@ watch(() => route.fullPath, () => {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  padding: 0;
   transition: all 0.2s ease;
   color: var(--text-primary);
 }
@@ -342,12 +377,7 @@ watch(() => route.fullPath, () => {
   /* background: var(--surface); */
   color: var(--text-primary);
   transition: all 0.2s ease;
-  padding-right: 15px;
-}
-
-.app-navbar__theme-toggle:hover {
-  /* background: color-mix(in srgb, var(--surface) 90%, transparent); */
-  /* border-color: var(--border-strong); */
+  /* padding-right: 15px; */
 }
 
 .app-navbar__theme-toggle:active {
@@ -362,8 +392,9 @@ watch(() => route.fullPath, () => {
 
 .app-navbar__mobile-right {
   display: flex;
-  width: 100px;
+  width: 120px;
   align-items: center;
+  gap: 8px;
 }
 
 @media (min-width: 768px) {

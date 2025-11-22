@@ -42,6 +42,7 @@ defineProps<{
 
 <style scoped>
 .how {
+  background-color: var(--bg-page);
   padding: clamp(2.5rem, 6vw, 4rem) 0;
 }
 

@@ -37,7 +37,7 @@ defineProps<{
 
 <style scoped>
 .benefits {
-  background-color: var(--bg-page);
+  /* background-color: var(--bg-page); */
   padding: clamp(2.5rem, 6vw, 4.5rem) 0 clamp(2rem, 5vw, 3.5rem);
 }
 

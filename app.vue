@@ -2,9 +2,9 @@
   <div class="app-shell">
     <!-- Dashboard layout with sidebar -->
     <template v-if="isDashboard">
+      <LayoutAppNavbar />
       <LayoutDashboardSidebar />
       <main class="dashboard-main">
-        <LayoutDashboardMobileNavbar />
         <LayoutBreadcrumb />
         <NuxtPage />
       </main>
@@ -58,11 +58,6 @@ const isDashboard = computed(() => {
   /* padding: clamp(1.5rem, 3vw, 3rem); */
 }
 
-@media (max-width: 640px) {
-  .app-content {
-    padding: 1rem;
-  }
-}
 
 /* Dashboard Layout */
 .dashboard-main {
@@ -70,6 +65,7 @@ const isDashboard = computed(() => {
   padding: 1.5rem 2rem 2rem;
   margin-left: 0;
   min-height: 100vh;
+  margin-top: 0;
 }
 
 @media (min-width: 768px) {
@@ -80,7 +76,8 @@ const isDashboard = computed(() => {
 
 @media (max-width: 768px) {
   .dashboard-main {
-    padding: 1.5rem 1.5rem 2rem;
+    padding: 0;
+    padding-top: 1.5rem;
   }
 }
 </style>

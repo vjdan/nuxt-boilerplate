@@ -3,7 +3,7 @@
     <UContainer>
       <div class="proof-card">
         <div class="logo-block">
-          <p class="eyebrow">Ils nous font confiance</p>
+          <p class="eyebrow">{{ eyebrow }}</p>
           <div class="logo-row">
             <span v-for="logo in logos" :key="logo" class="logo-pill">{{ logo }}</span>
           </div>
@@ -41,6 +41,7 @@ type Rating = {
 }
 
 defineProps<{
+  eyebrow: string
   logos: string[]
   metrics: Metric[]
   rating: Rating
@@ -49,6 +50,8 @@ defineProps<{
 
 <style scoped>
 .proof {
+  margin-top: 50px;
+  background-color: var(--bg-page);
   padding: clamp(1.5rem, 4vw, 3rem) 0;
 }
 

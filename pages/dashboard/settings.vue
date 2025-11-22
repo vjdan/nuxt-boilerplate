@@ -1,29 +1,46 @@
 <template>
   <div class="dashboard-page">
-    <h1>Settings</h1>
-    <p>Configure your application settings</p>
+    <h1>{{ getTranslatedLabel('dashboard.settings.title') }}</h1>
+    <p>{{ getTranslatedLabel('dashboard.settings.description') }}</p>
     
     <div class="demo-cards">
       <UiCard>
-        <h3>Profile Settings</h3>
-        <p>Update your personal information</p>
+        <h3>{{ getTranslatedLabel('dashboard.settings.cards.0.title') }}</h3>
+        <p>{{ getTranslatedLabel('dashboard.settings.cards.0.description') }}</p>
       </UiCard>
       <UiCard>
-        <h3>Notifications</h3>
-        <p>Manage email and push notifications</p>
+        <h3>{{ getTranslatedLabel('dashboard.settings.cards.1.title') }}</h3>
+        <p>{{ getTranslatedLabel('dashboard.settings.cards.1.description') }}</p>
       </UiCard>
       <UiCard>
-        <h3>Security</h3>
-        <p>Password and two-factor authentication</p>
+        <h3>{{ getTranslatedLabel('dashboard.settings.cards.2.title') }}</h3>
+        <p>{{ getTranslatedLabel('dashboard.settings.cards.2.description') }}</p>
       </UiCard>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { messages } from '~/locales/messages'
+
 definePageMeta({
   middleware: 'auth'
 })
+
+const { locale } = useI18n()
+
+// Translation helper function
+const getTranslatedLabel = (key: string) => {
+  const currentLocale = locale.value as 'fr' | 'en'
+  const keys = key.split('.')
+  let value: any = messages[currentLocale]
+  
+  for (const k of keys) {
+    value = value?.[k]
+  }
+  
+  return value || key
+}
 </script>
 
 <style scoped>

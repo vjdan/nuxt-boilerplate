@@ -28,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import { getBreadcrumbLabel } from '~/config/breadcrumb'
+import { messages } from '~/locales/messages'
 
 interface Breadcrumb {
   label: string
@@ -36,6 +36,36 @@ interface Breadcrumb {
 }
 
 const route = useRoute()
+const { locale } = useI18n()
+
+// Translation helper function matching the approach used in index.vue and AppNavbar
+const getTranslatedLabel = (key: string) => {
+  const currentLocale = locale.value as 'fr' | 'en'
+  const keys = key.split('.')
+  let value: any = messages[currentLocale]
+  
+  for (const k of keys) {
+    value = value?.[k]
+  }
+  
+  return value || key
+}
+
+// Breadcrumb translation mapping
+const breadcrumbTranslations: Record<string, string> = {
+  // Dashboard routes
+  '/dashboard': 'breadcrumbs.dashboard',
+  '/dashboard/analytics': 'breadcrumbs.analytics',
+  '/dashboard/analytics/reports': 'breadcrumbs.reports',
+  '/dashboard/analytics/insights': 'breadcrumbs.insights',
+  '/dashboard/users': 'breadcrumbs.users',
+  '/dashboard/users/list': 'breadcrumbs.userList',
+  '/dashboard/users/roles': 'breadcrumbs.roles',
+  '/dashboard/settings': 'breadcrumbs.settings',
+  '/dashboard/settings/profile': 'breadcrumbs.profile',
+  '/dashboard/settings/security': 'breadcrumbs.security',
+  '/dashboard/settings/notifications': 'breadcrumbs.notifications',
+}
 
 const breadcrumbs = computed<Breadcrumb[]>(() => {
   const pathSegments = route.path.split('/').filter(Boolean)
@@ -47,10 +77,11 @@ const breadcrumbs = computed<Breadcrumb[]>(() => {
   pathSegments.forEach((segment, index) => {
     currentPath += `/${segment}`
     
-    // Try to get custom label from config first
-    let label = getBreadcrumbLabel(currentPath)
+    // Try to get translated label first
+    const translationKey = breadcrumbTranslations[currentPath]
+    let label = translationKey ? getTranslatedLabel(translationKey) : null
     
-    // If no custom label, format from segment
+    // If no translation found, format from segment
     if (!label) {
       label = segment
         .split('-')

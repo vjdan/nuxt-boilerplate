@@ -6,18 +6,18 @@
  */
 
 export const breadcrumbLabels: Record<string, string> = {
-  // Dashboard routes
-  '/dashboard': 'Dashboard',
-  '/dashboard/analytics': 'Analytics',
-  '/dashboard/analytics/reports': 'Reports',
-  '/dashboard/analytics/insights': 'Insights',
-  '/dashboard/users': 'Users',
-  '/dashboard/users/list': 'User List',
-  '/dashboard/users/roles': 'Roles',
-  '/dashboard/settings': 'Settings',
-  '/dashboard/settings/profile': 'Profile',
-  '/dashboard/settings/security': 'Security',
-  '/dashboard/settings/notifications': 'Notifications',
+  // Dashboard routes - now using translation keys
+  '/dashboard': 'dashboard.breadcrumb.dashboard',
+  '/dashboard/analytics': 'dashboard.breadcrumb.analytics',
+  '/dashboard/analytics/reports': 'dashboard.breadcrumb.reports',
+  '/dashboard/analytics/insights': 'dashboard.breadcrumb.insights',
+  '/dashboard/users': 'dashboard.breadcrumb.users',
+  '/dashboard/users/list': 'dashboard.breadcrumb.userList',
+  '/dashboard/users/roles': 'dashboard.breadcrumb.roles',
+  '/dashboard/settings': 'dashboard.breadcrumb.settings',
+  '/dashboard/settings/profile': 'dashboard.breadcrumb.profile',
+  '/dashboard/settings/security': 'dashboard.breadcrumb.security',
+  '/dashboard/settings/notifications': 'dashboard.breadcrumb.notifications',
 }
 
 /**

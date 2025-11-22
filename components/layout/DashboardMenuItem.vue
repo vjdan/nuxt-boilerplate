@@ -14,7 +14,7 @@
       @click="handleClick"
     >
       <UIcon v-if="item.icon" :name="item.icon" class="dashboard-menu-item__icon" />
-      <span class="dashboard-menu-item__label">{{ item.label }}</span>
+      <span class="dashboard-menu-item__label">{{ translatedLabel }}</span>
       
       <!-- Expand/Collapse Icon for items with children -->
       <svg
@@ -47,6 +47,7 @@
 
 <script setup lang="ts">
 import type { DashboardMenuItem as MenuItem } from '~/config/navigation'
+import { messages } from '~/locales/messages'
 
 interface Props {
   item: MenuItem
@@ -58,7 +59,26 @@ const emit = defineEmits<{
 }>()
 
 const route = useRoute()
+const { locale } = useI18n()
 const isExpanded = ref(false)
+
+// Translation helper function matching the approach used in other components
+const getTranslatedLabel = (key: string) => {
+  const currentLocale = locale.value as 'fr' | 'en'
+  const keys = key.split('.')
+  let value: any = messages[currentLocale]
+  
+  for (const k of keys) {
+    value = value?.[k]
+  }
+  
+  return value || key
+}
+
+// Computed property for translated label
+const translatedLabel = computed(() => {
+  return getTranslatedLabel(props.item.label)
+})
 
 const hasChildren = computed(() => {
   return props.item.children && props.item.children.length > 0

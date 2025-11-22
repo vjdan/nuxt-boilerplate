@@ -3,12 +3,12 @@
   <AuthWrapper glow-position="left">
     <template #panel>
       <AuthPanelContent
-        eyebrow="Get Started"
-        title="Create your account today."
-        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore."
+        :eyebrow="getTranslatedLabel('auth.register.eyebrow')"
+        :title="getTranslatedLabel('auth.register.title')"
+        :description="getTranslatedLabel('auth.register.description')"
       >
         <div class="pill-grid">
-          <span v-for="pill in perks" :key="pill" class="pill">{{ pill }}</span>
+          <span v-for="(pill, index) in perks" :key="index" class="pill">{{ pill }}</span>
         </div>
         <div class="milestones">
           <article v-for="milestone in milestones" :key="milestone.title" class="milestone">
@@ -20,9 +20,9 @@
     </template>
 
     <template #form>
-      <AuthFormHeader title="Register">
+      <AuthFormHeader :title="getTranslatedLabel('auth.register.formTitle')">
         <template #subtitle>
-          Already have an account? <NuxtLink to="/login">Sign in</NuxtLink>
+          {{ getTranslatedLabel('auth.register.subtitlePrefix') }} <NuxtLink to="/login">{{ getTranslatedLabel('auth.register.subtitleLink') }}</NuxtLink>
         </template>
       </AuthFormHeader>
 
@@ -30,24 +30,24 @@
         <UiInput
           v-model="form.email"
           type="email"
-          label="Email address"
-          placeholder="you@example.com"
+          :label="getTranslatedLabel('auth.common.email')"
+          :placeholder="getTranslatedLabel('auth.common.emailPlaceholder')"
           required
         />
 
         <UiInput
           v-model="form.password"
           type="password"
-          label="Password"
-          placeholder="••••••••"
+          :label="getTranslatedLabel('auth.common.password')"
+          :placeholder="getTranslatedLabel('auth.common.passwordPlaceholder')"
           required
         />
 
         <UiInput
           v-model="form.passwordConfirm"
           type="password"
-          label="Confirm Password"
-          placeholder="••••••••"
+          :label="getTranslatedLabel('auth.common.confirmPassword')"
+          :placeholder="getTranslatedLabel('auth.common.passwordPlaceholder')"
           required
         />
 
@@ -61,7 +61,7 @@
           :loading="loading"
           block
         >
-          Create account
+          {{ getTranslatedLabel('auth.register.submit') }}
         </UiButton>
       </form>
     </template>
@@ -70,7 +70,10 @@
 
 <script setup lang="ts">
 import AuroraBackground from '~/components/landing/backgrounds/InteractiveEnergyFlows.vue'
+import { messages } from '~/locales/messages'
+
 const { register, loading } = useAuth()
+const { locale } = useI18n()
 const router = useRouter()
 
 const form = reactive({
@@ -81,23 +84,42 @@ const form = reactive({
 
 const error = ref('')
 
-const perks = ['Feature A', 'Feature B', 'Feature C', 'Feature D']
-const milestones = [
-  { time: 'Step 1', title: 'Account setup complete' },
-  { time: 'Step 2', title: 'First action completed' },
-  { time: 'Step 3', title: 'Ready to use' }
-]
+// Translation helper function
+const getTranslatedLabel = (key: string) => {
+  const currentLocale = locale.value as 'fr' | 'en'
+  const keys = key.split('.')
+  let value: any = messages[currentLocale]
+  
+  for (const k of keys) {
+    value = value?.[k]
+  }
+  
+  return value || key
+}
+
+const perks = computed(() => [
+  getTranslatedLabel('auth.register.perks.0'),
+  getTranslatedLabel('auth.register.perks.1'),
+  getTranslatedLabel('auth.register.perks.2'),
+  getTranslatedLabel('auth.register.perks.3')
+])
+
+const milestones = computed(() => [
+  { time: getTranslatedLabel('auth.register.milestones.0.time'), title: getTranslatedLabel('auth.register.milestones.0.title') },
+  { time: getTranslatedLabel('auth.register.milestones.1.time'), title: getTranslatedLabel('auth.register.milestones.1.title') },
+  { time: getTranslatedLabel('auth.register.milestones.2.time'), title: getTranslatedLabel('auth.register.milestones.2.title') }
+])
 
 const handleRegister = async () => {
   error.value = ''
   
   if (form.password !== form.passwordConfirm) {
-    error.value = 'Passwords do not match'
+    error.value = getTranslatedLabel('auth.errors.passwordMismatch')
     return
   }
 
   if (form.password.length < 6) {
-    error.value = 'Password must be at least 6 characters'
+    error.value = getTranslatedLabel('auth.errors.passwordLength')
     return
   }
 
@@ -105,7 +127,7 @@ const handleRegister = async () => {
   if (success) {
     router.push('/login')
   } else {
-    error.value = 'Registration failed. Email might be in use.'
+    error.value = getTranslatedLabel('auth.errors.registrationFailed')
   }
 }
 </script>
